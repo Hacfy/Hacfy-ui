@@ -1,25 +1,42 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription } from "@/components/ui/card"
-import { BorderBeam } from "@/components/magicui/border-beam"
-import Link from "next/link"
-import { ArrowRightCircle } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription } from "@/components/ui/card";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { PinContainer } from "@/components/ui/3d-pin";
 
 export default function Component() {
   return (
     <div className="flex flex-col items-center justify-center py-20 px-4 sm:px-6 md:px-10">
-      
-      <Card className="max-w-7xl text-center mb-16 px-14 py-10 rounded-lg bg-transparent border-gray-700">
-        <CardDescription className="text-md md:text-xl font-bold text-gray-600 text-balance leading-relaxed">
-          HacFy is a full-spectrum cybersecurity company dedicated to building
-          safer digital ecosystems through innovative technologies, expert
-          consulting, and comprehensive security solutions. <br /> <br />From proactive
-          threat detection and penetration testing to advanced vulnerability
-          assessments and incident response, we provide end-to-end services
-          tailored to the needs of individuals, institutions, and enterprises.
-        </CardDescription>
-      </Card>
+      <section className="w-full max-w-5xl text-center">
+        <h2 className="text-4xl md:text-6xl font-bold text-secondary">
+          About HacFy
+        </h2>
+
+        <div className="h-[30rem] w-full flex items-center justify-center ">
+          <PinContainer
+            title="Know Our Services"
+            href="/#services"
+            className="bg-primary h-[250px]"
+          >
+            <div
+              className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 
+              sm:basis-1/2 w-[20rem] md:w-[70rem] h-[20rem] md:h-[30rem]"
+            >
+              <div className="text-xl font-semibold  !m-0 !p-0  text-gray-600">
+                HacFy is a full-spectrum cybersecurity company dedicated to
+                building safer digital ecosystems through innovative
+                technologies, expert consulting, and comprehensive security
+                solutions. <br /> <br />
+                From proactive threat detection and penetration testing to
+                advanced vulnerability assessments and incident response, we
+                provide end-to-end services tailored to the needs of
+                individuals, institutions, and enterprises.
+              </div>
+            </div>
+          </PinContainer>
+        </div>
+      </section>
 
       <section className="w-full max-w-5xl mb-20">
         <h2 className="text-4xl md:text-6xl font-bold text-center text-secondary">
@@ -56,39 +73,48 @@ export default function Component() {
         <h2 className="text-4xl md:text-6xl font-bold text-secondary pb-2">
           HACFY CYBER CHETANA
         </h2>
-        <h3 className="text-lg md:text-xl font-bold text-white">
+        <h3 className="text-lg md:text-xl font-bold text-black  ">
           Your Digital Safety, Our Priority
         </h3>
 
-        <Card className="relative overflow-hidden mt-10 bg-primary border border-gray-700">
-          <CardContent className="text-gray-700 font-semibold px-6 md:px-12 py-10 flex flex-col items-center">
-            <p className="text-lg md:text-3xl text-balance leading-relaxed">
-              HacFy Cyber Chetana is our flagship Corporate Social
-              Responsibility (CSR) initiative aimed at creating a safer digital
-              future for all.
-            </p>
+        <div className="h-[30rem] w-full flex items-center justify-center ">
+          <PinContainer
+            title="cyberchetana.hacfy.com"
+            href="https://cyberchetana.hacfy.com"
+            className="bg-primary h-[350px]"
+          >
+            <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] md:w-[70rem] h-[20rem] md:h-[30rem]">
+              <div className="text-base !m-0 !p-0 font-normal">
+                <p className="text-lg md:text-3xl text-balance leading-relaxed text-gray-800 font-semibold">
+                  HacFy Cyber Chetana is our flagship Corporate Social
+                  Responsibility (CSR) initiative aimed at creating a safer
+                  digital future for all.
+                </p>
 
-            <p className="text-xl text-secondary pt-5">
-              Focused on Karnataka, this mission-driven campaign is designed to:
-            </p>
+                <p className="text-xl font-semibold text-secondary pt-5">
+                  Focused on Karnataka, this mission-driven campaign is designed
+                  to:
+                </p>
 
-            <ul className="pt-4 text-gray-500 list-disc list-inside text-left max-w-3xl">
-              <li>Empower young minds with cybersecurity knowledge and career guidance.</li>
-              <li>Educate and protect women from digital abuse and online threats.</li>
-              <li>
-                Build grassroots digital literacy through workshops, awareness drives,
-                and school/college outreach programs.
-              </li>
-            </ul>
-
-            <Link href="https://cyberchetana.hacfy.com" passHref legacyBehavior>
-              <Button className="mt-6 bg-secondary text-md font-bold hover:bg-secondary/80">
-                Know More <ArrowRightCircle />
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
+                <ul className="pt-6 text-gray-600 list-disc list-inside text-left max-w-3xl ml-50">
+                  <li>
+                    Empower young minds with cybersecurity knowledge and career
+                    guidance.
+                  </li>
+                  <li>
+                    Educate and protect women from digital abuse and online
+                    threats.
+                  </li>
+                  <li>
+                    Build grassroots digital literacy through workshops,
+                    awareness drives, and school/college outreach programs.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </PinContainer>
+        </div>
       </section>
     </div>
-  )
+  );
 }

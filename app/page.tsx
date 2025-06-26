@@ -25,7 +25,7 @@ export default function Home() {
       <div className="mt-10">
         <WhyUs />
       </div>
-      <div>
+      <div id="services">
         <TrainingsSection />
       </div>
 
