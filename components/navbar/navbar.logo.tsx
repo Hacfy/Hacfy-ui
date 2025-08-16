@@ -15,27 +15,26 @@ export function Navbarlogo() {
   const pathname = usePathname();
 
   const serviceData: Record<string, string[]> = {
-    "DB Services": [
-      "Database Consulting",
-      "Virtual DBA Services",
-      "Database Migration Services",
-      "Monitoring & Support",
-      "Performance Tuning",
+    "VAPT": [
+      "Web Application",
+      "API",
+      "Mobile",
+      "Cloud",
+      "Network",
     ],
-    "Testing / Q&A": [
-      "API Testing",
-      "SEO Testing",
-      "Security Testing",
-      "Test Automation",
-      "Mobile App Testing",
-      "Cyber Security Testing",
+    "Cyber Resillience": [
+      "Cyber Advisory & Consultancy",
+      "vCISO",
+      "vDPO",
+      "Regulatory Compliance",
+      "Cyber Risk Assessment",
     ],
-    "More Services": [
-      "Cloud Services",
-      "IT Services",
-      "Technology Solutions",
-      "Tech Support Services",
-    ],
+    // "More Services": [
+    //   "Cloud Services",
+    //   "IT Services",
+    //   "Technology Solutions",
+    //   "Tech Support Services",
+    // ],
   };
 
   useEffect(() => {
@@ -153,11 +152,12 @@ export function Navbarlogo() {
 
                   {/* Right: Corresponding Services */}
                   <div className="col-span-3 grid grid-cols-2 gap-4">
-                    {serviceData[selectedCategory].map((service, idx) => (
-                      <div key={idx} className="text-sm hover:underline cursor-pointer">
-                        {service}
-                      </div>
-                    ))}
+                    {serviceData[selectedCategory]?.map((service, idx) => (
+  <div key={idx} className="text-sm hover:underline cursor-pointer">
+    {service}
+  </div>
+))}
+
                   </div>
                 </div>
               </div>

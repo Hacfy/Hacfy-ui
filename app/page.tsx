@@ -10,15 +10,15 @@ import TestimonialSlider from "@/components/Testinomials/testinomials";
 import TrainingsSection from "@/components/trainings/training";
 import WhyUs from "@/components/whyus/whyus";
 import CTA from '@/components/CTA/cta';
-import Hero2 from "@/components/CTA/hero2";
+
 
 
 export default function Home() {
   return (
     <>
-      <div className="min-h-screen flex flex-col justify-center " id="main">
+      {/* <div className="min-h-screen flex flex-col justify-center " id="main">
         <Hero2 />
-      </div>
+      </div> */}
       <div className="mb-30 flex flex-col justify-center" id="hero">
         <Hero />
       </div>
