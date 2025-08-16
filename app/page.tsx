@@ -1,5 +1,5 @@
 
-import Hero2 from "@/components/AboveHero/hero2";
+// import Hero2 from "@/components/AboveHero/hero2";
 import CareerSection from "@/components/career/career";
 import ContactUs from "@/components/contact/contact";
 import FaqSection from "@/components/faq/faq";
@@ -10,6 +10,7 @@ import TestimonialSlider from "@/components/Testinomials/testinomials";
 import TrainingsSection from "@/components/trainings/training";
 import WhyUs from "@/components/whyus/whyus";
 import CTA from '@/components/CTA/cta';
+import Hero2 from "@/components/CTA/hero2";
 
 
 export default function Home() {
