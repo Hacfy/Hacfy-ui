@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const CTA = () => {
@@ -13,9 +14,12 @@ const CTA = () => {
           </h1>
         </div>
         <div>
-          <button className="bg-white text-black px-6 py-3 rounded-full font-semibold shadow-lg transition hover:bg-gray-100">
+          <Link href="/contact">
+           <button className="bg-white text-black px-6 py-3 rounded-full font-semibold shadow-lg  hover:bg-red-600 hover:text-white transition-colors duration-300">
             Get A Quote
           </button>
+          </Link>
+         
         </div>
       </div>
     </section>

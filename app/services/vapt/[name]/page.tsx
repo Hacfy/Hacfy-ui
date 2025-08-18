@@ -6,7 +6,7 @@ import { FC } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 import { BorderBeam } from "@/components/magicui/border-beam";
-import ContactUs from "@/components/contact/contact";
+import ContactPage from "@/app/contact/page";
 
 interface PageData {
   title: string;
@@ -246,7 +246,7 @@ const KnowMore: FC = () => {
           height={1000}
         />
       </div>
-      <ContactUs />
+      <ContactPage />
     </div>
   );
 };

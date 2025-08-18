@@ -54,7 +54,7 @@ function CareerCard({
 export default function CareerSection() {
   return (
     <section className=" text-white py-16 px-8 md:px-16 lg:px-32">
-      <h2 className="text-center text-4xl md:text-4xl font-bold mb-8">
+      <h2 className="text-center text-4xl md:text-4xl font-bold mb-8 text-secondary">
         Blogs and Newsletters
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">

@@ -10,15 +10,13 @@ import TestimonialSlider from "@/components/Testinomials/testinomials";
 import TrainingsSection from "@/components/trainings/training";
 import WhyUs from "@/components/whyus/whyus";
 import CTA from '@/components/CTA/cta';
+import ContactPage from "./contact/page";
 
 
 
 export default function Home() {
   return (
     <>
-      {/* <div className="min-h-screen flex flex-col justify-center " id="main">
-        <Hero2 />
-      </div> */}
       <div className="mb-30 flex flex-col justify-center" id="hero">
         <Hero />
       </div>
@@ -37,7 +35,7 @@ export default function Home() {
 
       <div>
         <h1 className="text-secondary text-5xl text-center font-bold mb-16">
-          Websites we have Secured
+          Protected by Our Expertise
         </h1>
         <MarqueeDemo />
       </div>
@@ -53,7 +51,7 @@ export default function Home() {
         <TestimonialSlider />
       </div>
       <div id="contact">
-        <ContactUs />
+        <ContactPage />
       </div>
     </>
   );
