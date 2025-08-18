@@ -6,20 +6,16 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {
-  Shield,
   AlertTriangle,
   Search,
   Calendar,
   Clock,
   User,
   ArrowRight,
-  TrendingUp,
   Lock,
-  Eye,
   Zap,
 } from "lucide-react"
 
-// Dummy blog data related to cybersecurity and fraud
 const blogPosts = [
   {
     id: "phishing-attacks-2024",
@@ -603,9 +599,7 @@ export default function BlogsPage() {
         </div>
         <div className="relative max-w-6xl mx-auto text-center animate-fade-in">
           <div className="flex flex-col sm:flex-row items-center justify-center mb-6 sm:mb-8">
-            <div className="p-3 sm:p-4 bg-white/10 rounded-full backdrop-blur-sm mb-4 sm:mb-0 sm:mr-6">
-              <Shield className="w-12 h-12 sm:w-16 sm:h-16 text-white animate-pulse" />
-            </div>
+           
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight">
               Hacfy Blog
             </h1>
@@ -658,7 +652,6 @@ export default function BlogsPage() {
         <div className="py-12 px-4 bg-background">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center mb-8">
-              <TrendingUp className="w-8 h-8 text-secondary mr-3" />
               <h2 className="text-3xl sm:text-4xl font-black gradient-text">Featured Articles</h2>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -703,7 +696,6 @@ export default function BlogsPage() {
       <div className="py-12 px-4 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center mb-8">
-            <Eye className="w-8 h-8 text-secondary mr-3" />
             <h2 className="text-3xl sm:text-4xl font-black gradient-text">
               {searchTerm || selectedCategory !== "All" ? "Search Results" : "All Articles"}
             </h2>

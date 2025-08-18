@@ -11,35 +11,24 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    text: "An excellent program that covered all the key areas of cybersecurity. The practical exercises were very useful.",
-    name: "John Doe",
-    role: "Security Analyst",
-    image: "https://randomuser.me/api/portraits/men/1.jpg",
+    text: "The cybersecurity training gave me real-world skills and boosted my career confidence. The hands-on approach made learning impactful.",
+    name: "Ram kiran",
+    role: "Founder of Shree Medha College",
+    image: "./sriram.jpeg"
   },
   {
-    text: "The course was insightful and provided hands-on experience in real-world scenarios.",
-    name: "Jane Smith",
-    role: "Cybersecurity Engineer",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
+    text: "Our systems were secured with expert strategies and quick support. The service gives us complete peace of mind",
+    name: "Niels Hoekman",
+    role: "CEO of CISA",
+    image: "./Niels Hoekman.jpeg",
   },
   {
-    text: "A must-take program for anyone interested in learning about cybersecurity in depth.",
-    name: "Alex Johnson",
-    role: "Ethical Hacker",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
+    text: "The cybersecurity training gave me real-world skills and boosted my career confidence. The hands-on approach made learning impactful.",
+    name: "Kiran kashyap",
+    role: "Marketing Head & Company Relationship Manager at Vithsutra Technologies",
+    image: "./Kiran kashyap.jpeg",
   },
-  {
-    text: "A must-take program for anyone interested in learning about cybersecurity in depth.",
-    name: "Alex Johnson",
-    role: "Ethical Hacker",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
-  },
-  {
-    text: "A must-take program for anyone interested in learning about cybersecurity in depth.",
-    name: "Alex Johnson",
-    role: "Ethical Hacker",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
-  },
+  
 ];
 
 export default function TestimonialSlider() {

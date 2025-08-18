@@ -1,27 +1,28 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import { useParams, useRouter } from "next/navigation";
-import { FC } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
-import { BorderBeam } from "@/components/magicui/border-beam";
-import ContactPage from "@/app/contact/page";
+import Image from "next/image"
+import { useParams, useRouter } from "next/navigation"
+import { FC } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { CheckCircle } from "lucide-react"
+import { BorderBeam } from "@/components/magicui/border-beam"
+import ContactPage from "@/app/contact/page"
+import { motion } from "framer-motion" // ✅ Animation
 
 interface PageData {
-  title: string;
-  heading: string;
-  content: string;
-  subContent: string;
-  image: string;
-  image2: string;
-  heading2: string;
-  heading3: string;
-  image3: string;
+  title: string
+  heading: string
+  content: string
+  subContent: string
+  image: string
+  image2: string
+  heading2: string
+  heading3: string
+  image3: string
   extraSection?: {
-    heading: string;
-    points: string[];
-  };
+    heading: string
+    points: string[]
+  }
 }
 
 const data: Record<string, PageData> = {
@@ -154,24 +155,34 @@ const data: Record<string, PageData> = {
     },
   },
 };
-
 const KnowMore: FC = () => {
-  const params = useParams();
-  const router = useRouter();
-  const name = params?.name as string;
-  const pageData = data[name];
+  const params = useParams()
+  const router = useRouter()
+  const name = params?.name as string
+  const pageData = data[name]
 
   if (!pageData) {
     return (
       <div className="w-full h-screen flex items-center justify-center bg-black text-white">
         <h1 className="text-2xl">Page not found</h1>
       </div>
-    );
+    )
   }
 
   return (
-    <div className="w-full bg-primary min-h-screen text-secondary p-4 sm:p-10 ">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 mb-20 mt-10 md:mt-0">
+    <motion.div
+      className="w-full bg-primary min-h-screen text-secondary p-4 sm:p-10"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      {/* Hero Section */}
+      <motion.div
+        className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20 mb-20 mt-10 md:mt-0"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+      >
         <div className="flex-1">
           <h1 className="text-secondary text-4xl font-bold mb-6">
             {pageData.heading}
@@ -179,51 +190,82 @@ const KnowMore: FC = () => {
           <p className="text-gray-700 font-normal mb-4 text-lg text-balance">
             {pageData.content}
           </p>
-          <button
+          <motion.button
             className="bg-secondary text-white font-bold py-2 px-4 rounded"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => router.push(`/contact`)}
           >
             GET IN TOUCH
-          </button>
+          </motion.button>
         </div>
-        <div className="flex-1 md:ml-28">
+        <motion.div
+          className="flex-1 md:ml-28"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+        >
           <Image
             src={pageData.image}
             alt={pageData.title}
             width={900}
             height={700}
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <p className=" md:mx-50 mb-20 text-xl font-semibold text-gray-700">
+      {/* Subcontent */}
+      <motion.p
+        className="md:mx-50 mb-20 text-xl font-semibold text-gray-700"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.8 }}
+      >
         {pageData.subContent}
-      </p>
+      </motion.p>
 
+      {/* Extra Section */}
       {pageData.extraSection && (
-        <div className="max-w-5xl mx-auto text-white mb-24">
+        <motion.div
+          className="max-w-5xl mx-auto text-white mb-24"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
           <Card className="relative bg-primary border border-[#1f1f1f] shadow-lg p-2 md:p-14">
             <CardHeader>
-              <CardTitle className="text-2xl md:text-4xl text-secondary font-semibold text-center ">
+              <CardTitle className="text-2xl md:text-4xl text-secondary font-semibold text-center">
                 {pageData.extraSection.heading}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-4 mt-4">
                 {pageData.extraSection.points.map((point, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                  <motion.li
+                    key={index}
+                    className="flex items-start gap-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1 + index * 0.1, duration: 0.6 }}
+                  >
                     <CheckCircle className="text-secondary w-6 h-6 shrink-0" />
                     <span className="text-lg text-gray-700">{point}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </CardContent>
             <BorderBeam duration={8} size={100} />
           </Card>
-        </div>
+        </motion.div>
       )}
 
-      <div className="h-full flex flex-col justify-center items-center mb-20">
+      {/* Methodology Section */}
+      <motion.div
+        className="h-full flex flex-col justify-center items-center mb-20"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+      >
         <div className="text-secondary text-center text-4xl md:text-6xl font-bold mb-16">
           {pageData.heading2}
         </div>
@@ -233,9 +275,15 @@ const KnowMore: FC = () => {
           width={1300}
           height={1000}
         />
-      </div>
+      </motion.div>
 
-      <div className="h-full flex flex-col justify-center items-center mb-20">
+      {/* Goals Section */}
+      <motion.div
+        className="h-full flex flex-col justify-center items-center mb-20"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
+      >
         <div className="text-secondary text-center text-4xl md:text-6xl font-bold mb-10 md:mb-20">
           {pageData.heading3}
         </div>
@@ -245,10 +293,18 @@ const KnowMore: FC = () => {
           width={1200}
           height={1000}
         />
-      </div>
-      <ContactPage />
-    </div>
-  );
-};
+      </motion.div>
 
-export default KnowMore;
+      {/* Contact Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.8 }}
+      >
+        <ContactPage />
+      </motion.div>
+    </motion.div>
+  )
+}
+
+export default KnowMore

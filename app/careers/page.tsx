@@ -160,28 +160,8 @@ export default function CareersPage() {
             Be part of an innovative team that's shaping the future of technology. Where passion meets purpose, and
             dreams become reality.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-300 fill-current" />
-              ))}
-            </div>
-            <span className="text-white/90 font-bold text-sm sm:text-lg">Rated 5/5 by our employees</span>
-          </div>
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8 text-white/80">
-            <div className="flex items-center gap-2">
-              <Globe className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="font-semibold text-sm sm:text-base">Global Team</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="font-semibold text-sm sm:text-base">Fast Growing</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Shield className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="font-semibold text-sm sm:text-base">Secure Future</span>
-            </div>
-          </div>
+         
+  
         </div>
       </div>
 
@@ -343,28 +323,44 @@ export default function CareersPage() {
                     {errors.role && <p className="text-destructive text-sm font-semibold">{errors.role}</p>}
                   </div>
                 </div>
+<div className="space-y-3 sm:space-y-4">
+  <Label
+    htmlFor="resume"
+    className="text-base sm:text-lg font-bold text-foreground"
+  >
+    Resume Upload (PDF/DOC) *
+  </Label>
 
-                <div className="space-y-3 sm:space-y-4">
-                  <Label htmlFor="resume" className="text-base sm:text-lg font-bold text-foreground">
-                    Resume Upload (PDF/DOC) *
-                  </Label>
-                  <div className="relative">
-                    <Input
-                      id="resume"
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      onChange={handleFileChange}
-                      className={`h-12 sm:h-14 text-sm sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl file:mr-4 sm:file:mr-6 file:py-2 sm:file:py-3 file:px-4 sm:file:px-8 file:rounded-full file:border-0 file:text-xs sm:file:text-sm file:font-bold file:bg-secondary file:text-white hover:file:bg-secondary/90 ${errors.resume ? "border-destructive" : "border-border"}`}
-                    />
-                  </div>
-                  {formData.resume && (
-                    <p className="text-sm text-muted-foreground flex items-center gap-2 sm:gap-3 font-semibold">
-                      <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
-                      <span className="truncate">{formData.resume.name}</span>
-                    </p>
-                  )}
-                  {errors.resume && <p className="text-destructive text-sm font-semibold">{errors.resume}</p>}
-                </div>
+  <div
+    className={`flex items-center justify-between h-12 sm:h-14 w-full border-2 rounded-xl overflow-hidden cursor-pointer
+      ${errors.resume ? "border-destructive" : "border-border"}`}
+  >
+    {/* Hidden real input */}
+    <input
+      id="resume"
+      type="file"
+      accept=".pdf,.doc,.docx"
+      onChange={handleFileChange}
+      className="hidden"
+    />
+
+    {/* Fake input UI */}
+    <label
+      htmlFor="resume"
+      className="bg-secondary text-white px-4 py-2 h-full flex items-center font-semibold text-sm sm:text-base cursor-pointer hover:bg-secondary/90"
+    >
+      Choose File
+    </label>
+    <span className="px-3 text-sm sm:text-base text-muted-foreground truncate">
+      {formData.resume ? formData.resume.name : "No file chosen"}
+    </span>
+  </div>
+
+  {/* Error message */}
+  {errors.resume && (
+    <p className="text-destructive text-sm font-semibold">{errors.resume}</p>
+  )}
+</div>
 
                 <div className="space-y-3 sm:space-y-4">
                   <Label htmlFor="experience" className="text-base sm:text-lg font-bold text-foreground">

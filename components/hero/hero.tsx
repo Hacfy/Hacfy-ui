@@ -2,7 +2,8 @@
 import React from "react";
 import { Button } from "../ui/button";
 import { BackgroundBeams } from "../ui/background-beams";
-
+import Link from "next/link";
+import Image from "next/image";
 export default function Hero() {
   return (
 
@@ -27,11 +28,20 @@ export default function Hero() {
           cyber threat landscape.
         </p>
 
-        <div className="mt-8 flex justify-center">
-          <Button className="px-6 py-3 text-lg border-2 text-secondary tracking-tight font-bold hover:text-white hover:bg-secondary">
-           Schedule a call
-          </Button>
-        </div>
+       <div className="mt-8 flex justify-center"> 
+        <button className="group z-10 px-5 py-2 text-lg border-2 text-secondary tracking-tight rounded-4xl font-bold hover:text-white hover:bg-secondary bg-white">
+          
+           <Link href="/contact" className="flex items-center gap-2"> 
+                       <span className="ml-2">Schedule a call</span> {/* Default image */} 
+           <div className="relative z-10 group">
+  <Image src="/nexthero.png" alt="default" width={25} height={30} className="block group-hover:hidden" />
+  <Image src="/nextbtn.png" alt="hover" width={25} height={30} className="hidden group-hover:block" />
+</div>
+
+            </Link> 
+            </button> 
+            </div>
+
       </div>
       <BackgroundBeams />
     </div>

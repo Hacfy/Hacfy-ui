@@ -20,28 +20,24 @@ export function Navbarlogo() {
       "Regulatory Compliance",
       "Cyber Risk Assessment",
     ],
-    // "More Services": [
-    //   "Cloud Services",
-    //   "IT Services",
-    //   "Technology Solutions",
-    //   "Tech Support Services",
-    // ],
+     "Digital Forensics": [
+      "Cyber Advisory & Consultancy",
+      "vCISO",
+      "vDPO",
+      "Regulatory Compliance",
+      "Cyber Risk Assessment",
+    ],
+     "Trainings": [
+      "Cyber Advisory & Consultancy",
+      "vCISO",
+      "vDPO",
+      "Regulatory Compliance",
+      "Cyber Risk Assessment",
+    ],
+   
   }
 
-  // useEffect(() => {
-  //   if (pathname !== "/") {
-  //     setScrolled(true);
-  //     return;
-  //   }
-
-  //   // const handleScroll = () => {
-  //   //   const heroHeight = document.getElementById("hero")?.offsetHeight || 400;
-  //   //   setScrolled(window.scrollY > heroHeight - 50);
-  //   // };
-
-  //   // window.addEventListener("scroll", handleScroll);
-  //   // return () => window.removeEventListener("scroll", handleScroll);
-  // }, [pathname]);
+  
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -101,7 +97,15 @@ export function Navbarlogo() {
             </button>
 
             {servicesOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 translate-y-4 bg-white border rounded-2xl w-[750px] p-10 z-50 shadow-xl">
+<div
+  className="
+    absolute left-1/2 -translate-x-1/2 translate-y-4
+    bg-white border rounded-2xl
+    w-[1200px] max-h-[350px] overflow-y-auto
+    p-6 z-50 shadow-xl
+  "
+>
+
                 {clickedOpen && (
                   <div className="text-right mb-4">
                     <button onClick={handleOutsideClick}>

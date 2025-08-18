@@ -5,7 +5,7 @@ export default function CloudSecuritySolutions() {
     {
       id: "01",
       title: "Penetration Testing",
-      route:"pentesting",
+      route:"services/vapt",
       description:
         "Continuously perform penetration testing to identify misconfigurations, vulnerabilities, and security gaps that deviate from best practices",
       highlight: false,
@@ -57,7 +57,7 @@ export default function CloudSecuritySolutions() {
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <Link href={`/moreservices/${solution.route}`}>
+                <Link href={`/${solution.route}`}>
                   <button
                     className={`px-6 py-2 text-sm rounded-full border 
                     transition-colors duration-300 hover:text-red-600 hover:border-red-600`}

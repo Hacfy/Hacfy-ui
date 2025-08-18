@@ -149,8 +149,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                        <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                        <p className="text-sm text-muted-foreground mt-1">Mon-Fri, 9AM-6PM EST</p>
+                        <p className="text-muted-foreground">+91 8660767853</p>
+                        <p className="text-sm text-muted-foreground mt-1">Mon-Fri, 9AM-6PM IST</p>
                       </div>
                     </div>
                   </CardContent>
@@ -164,8 +164,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-foreground mb-1">Office</h3>
-                        <p className="text-muted-foreground">123 Cyber Security Blvd</p>
-                        <p className="text-muted-foreground">Tech City, TC 12345</p>
+                        <p className="text-muted-foreground">Hacfy Office, 2nd Floor Alva's Technology Centre, Mijar-Moodubidire, DK 574225.</p>
+                
                       </div>
                     </div>
                   </CardContent>

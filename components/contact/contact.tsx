@@ -110,7 +110,7 @@ export default function ContactUs() {
           </label>
           <input
             type="email"
-            placeholder="Enter your work email"
+            placeholder="info@hacfy.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full border border-gray-600 bg-transparent p-2 rounded text-gray-600"
@@ -123,7 +123,7 @@ export default function ContactUs() {
           </label>
           <input
             type="number"
-            placeholder="Enter your phone number"
+            placeholder="+91 8660767853"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="w-full border border-gray-600 bg-transparent p-2 rounded text-gray-600"

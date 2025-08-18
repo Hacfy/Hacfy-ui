@@ -17,7 +17,7 @@ export function Navbar() {
     { icon: <FaLinkedin size={20} />, url: 'https://www.linkedin.com/in/yourprofile' },
     { icon: <FaYoutube size={20} />, url: 'https://www.youtube.com/yourchannel' },
   ];
-
+  
   const navLinks = [
     { name: 'Services', url: '#services', hasDropdown: true },
     { name: 'Pricing', url: '#pricing', hasDropdown: false },

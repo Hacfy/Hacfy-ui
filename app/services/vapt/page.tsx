@@ -53,9 +53,7 @@ export default function VAPTPage() {
       <section className="bg-gradient-to-br from-white to-gray-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="flex justify-center mb-6">
-              <Shield className="w-16 h-16 text-secondary" />
-            </div>
+           
             <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">VAPT Services</h1>
             <p className="text-xl text-gray-600 leading-relaxed">
               Vulnerability Assessment and Penetration Testing to identify and exploit security weaknesses before
