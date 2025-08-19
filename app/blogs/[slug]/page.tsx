@@ -26,13 +26,9 @@ import {
 import { blogPosts } from "@/lib/blog-data"
 import { useState } from "react"
 
-interface BlogPostPageProps {
-  params: {
-    slug: string
-  }
-}
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
+
+export default function BlogPostPage({ params }: any) {
   const [copied, setCopied] = useState(false)
   const post = blogPosts.find((p) => p.id === params.slug)
 
