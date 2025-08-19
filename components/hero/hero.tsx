@@ -12,7 +12,7 @@ export default function Hero() {
         className=" text-white py-4 bg-clip-text text-center text-4xl font-medium tracking-tight  md:text-7xl"
       >
         <h1 className="text-5xl md:text-8xl font-extrabold leading-tight ">
-          <span className="text-white hover:text-red-500 cursor-pointer">
+          <span className="text-red-600 hover:text-red-500 cursor-pointer">
   A FUTURE SECURED
 </span>
 

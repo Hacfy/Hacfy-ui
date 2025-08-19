@@ -5,7 +5,7 @@ export default function WhyUs() {
   return (
     <section className=" text-secondary px-8 md:py-16 py-10">
         <h2 className=" text-4xl md:text-5xl font-bold text-center mb-20 leading ">
-          Why Us
+         Built for You
         </h2>
       <div className="max-w-9xl">
         <Image

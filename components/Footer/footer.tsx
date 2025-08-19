@@ -88,23 +88,27 @@ export default function FooterDemo() {
 
             {/* Legal Links */}
             <div>
-              <div className="mt-2 md:mt-0 hover:text-secondary">
-                <div>
+              <div className="mt-2 md:mt-0">
+                <div className="hover:text-secondary">
                   <Link
-                    href="/UserTerma"
+                    href="/terms"
                     className="hover:text-secondary"
                     style={{ color: "var(--primary-blue)" }}
                   >
                     User Terms & Conditions
                   </Link>
                 </div>
-                <Link
-                  href="/UserTerma"
+                <div className="hover:text-secondary">
+                  <Link
+                  href="/privacy"
                   className="hover:text-secondary"
                   style={{ color: "var(--primary-blue)" }}
+                  
                 >
                   Privacy Policy
                 </Link>
+                </div>
+               
               </div>
             </div>
           </div>

@@ -3,68 +3,82 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ChevronDown, ChevronRight, X } from "lucide-react"
+import {
+  ChevronDown,
+  ChevronRight,
+  X,
+  Shield,
+  Cloud,
+  Smartphone,
+  Globe,
+  Network,
+  Cpu,
+  Users,
+  UserCheck,
+  FileCheck,
+  AlertTriangle,
+  Search,
+  Zap,
+  Lock,
+  Eye,
+  GraduationCap,
+  Code,
+  Target,
+} from "lucide-react"
+import { usePathname } from "next/navigation"
 
 export function Navbarlogo() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
-  const [clickedOpen, setClickedOpen] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState("DB Services")
+  const [selectedCategory, setSelectedCategory] = useState("VAPT")
+  const pathname = usePathname()
 
-  const serviceData: Record<string, string[]> = {
-    VAPT: ["Web Application", "API", "Mobile", "Cloud", "Network","Iot"],
-    "Cyber Resillience": [
-      "Cyber Advisory & Consultancy",
-      "vCISO",
-      "vDPO",
-      "Regulatory Compliance",
-      "Cyber Risk Assessment",
-    ],
-     "Digital Forensics": [
-      "Cyber Advisory & Consultancy",
-      "vCISO",
-      "vDPO",
-      "Regulatory Compliance",
-      "Cyber Risk Assessment",
-    ],
-     "Trainings": [
-      "Cyber Advisory & Consultancy",
-      "vCISO",
-      "vDPO",
-      "Regulatory Compliance",
-      "Cyber Risk Assessment",
-    ],
-   
+  const serviceData: Record<string, { services: Array<{ name: string; icon: any; description: string }> }> = {
+    VAPT: {
+      services: [
+        { name: "Web Application", icon: Globe, description: "Comprehensive web app security testing" },
+        { name: "API", icon: Network, description: "REST & GraphQL API vulnerability assessment" },
+        { name: "Mobile", icon: Smartphone, description: "iOS & Android app penetration testing" },
+        { name: "Cloud", icon: Cloud, description: "AWS, Azure, GCP security evaluation" },
+        { name: "Network", icon: Shield, description: "Infrastructure & network security testing" },
+        { name: "IoT", icon: Cpu, description: "Internet of Things device security audit" },
+      ],
+    },
+    "Cyber Resilience": {
+      services: [
+        { name: "Cyber Advisory & Consultancy", icon: Users, description: "Strategic cybersecurity guidance" },
+        { name: "vCISO", icon: UserCheck, description: "Virtual Chief Information Security Officer" },
+        { name: "vDPO", icon: FileCheck, description: "Virtual Data Protection Officer services" },
+        { name: "Regulatory Compliance", icon: AlertTriangle, description: "GDPR, SOX, HIPAA compliance support" },
+        { name: "Cyber Risk Assessment", icon: Search, description: "Comprehensive risk evaluation" },
+      ],
+    },
+    "Digital Forensics": {
+      services: [
+        { name: "Incident Response", icon: Zap, description: "24/7 cyber incident response team" },
+        { name: "Malware Analysis", icon: Lock, description: "Advanced malware reverse engineering" },
+        { name: "Forensic Investigation", icon: Eye, description: "Digital evidence collection & analysis" },
+      ],
+    },
+    Trainings: {
+      services: [
+        { name: "Ethical Hacking", icon: GraduationCap, description: "Hands-on penetration testing training" },
+        { name: "Cloud Security", icon: Cloud, description: "Cloud platform security best practices" },
+        { name: "OSINT", icon: Target, description: "Open Source Intelligence techniques" },
+        { name: "Secure Coding", icon: Code, description: "Secure development practices" },
+      ],
+    },
   }
-
-  
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setClickedOpen(false)
         setServicesOpen(false)
       }
     }
-
     document.addEventListener("keydown", handleKeyDown)
     return () => document.removeEventListener("keydown", handleKeyDown)
   }, [])
-
-  const handleClick = () => {
-    setClickedOpen(true)
-    setServicesOpen(true)
-  }
-
-  const handleDoubleClick = () => {
-    setClickedOpen(false)
-    setServicesOpen(false)
-  }
-
-  const handleOutsideClick = () => {
-    setClickedOpen(false)
-    setServicesOpen(false)
-  }
 
   return (
     <nav className={`bg-white shadow-md sticky top-0 z-50 py-2 transition-all duration-300 `}>
@@ -76,17 +90,19 @@ export function Navbarlogo() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex space-x-8 items-center relative">
-          <a href="/" className="text-lg font-medium text-gray-700 hover:text-red-600">
+          <Link href="/" className="text-lg font-medium text-gray-700 hover:text-red-600">
             Home
-          </a>
+          </Link>
           <Link href="/about" className="text-lg font-medium text-gray-700 hover:text-red-600">
             About
           </Link>
-           <div className="relative">
+           <div
+            className="relative"
+            onMouseEnter={() => setServicesOpen(true)}
+          >
             <button
               className="flex items-center gap-1 text-lg font-medium text-gray-700 hover:text-red-600"
-              onClick={handleClick}
-              onDoubleClick={handleDoubleClick}
+              onClick={() => setServicesOpen(!servicesOpen)}
             >
               Services
               <ChevronDown
@@ -97,92 +113,112 @@ export function Navbarlogo() {
             </button>
 
             {servicesOpen && (
-<div
-  className="
-    absolute left-1/2 -translate-x-1/2 translate-y-4
-    bg-white border rounded-2xl
-    w-[1200px] max-h-[350px] overflow-y-auto
-    p-6 z-50 shadow-xl
-  "
->
+              <div
+                className="absolute left-1/2 -translate-x-1/2 mt-4
+                  bg-white border rounded-2xl
+                  w-[1000px] max-h-[500px] overflow-y-auto
+                  p-8 z-50 shadow-2xl transition-all duration-300 ease-out
+                  backdrop-blur-sm border-gray-200"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%)",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
+                }}
+              >
+                <button
+                  className="absolute top-6 right-6 text-gray-400 hover:text-red-600 transition-colors duration-200 p-2 rounded-full hover:bg-red-50"
+                  onClick={() => setServicesOpen(false)}
+                >
+                  <X className="w-5 h-5" />
+                </button>
 
-                {clickedOpen && (
-                  <div className="text-right mb-4">
-                    <button onClick={handleOutsideClick}>
-                      <X className="text-gray-500 hover:text-red-500 w-5 h-5" />
-                    </button>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-4 gap-8">
-                  {/* Left: Category Buttons */}
-                  <div className="col-span-1 space-y-2">
+                <div className="grid grid-cols-5 gap-8">
+                  <div className="col-span-2 space-y-3">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">
+                      Service Categories
+                    </h3>
                     {Object.keys(serviceData).map((category) => (
                       <button
                         key={category}
-                        onClick={() => setSelectedCategory(category)}
-                        className={`flex items-center justify-between w-full px-4 py-2 text-left rounded-md border hover:bg-secondary/20 transition ${
-                          selectedCategory === category ? "bg-secondary text-white" : "bg-white"
+                        onMouseEnter={() => setSelectedCategory(category)}
+                        className={`flex items-center justify-between w-full px-5 py-4 text-left rounded-xl border-2 transition-all duration-300 group ${
+                          selectedCategory === category
+                            ? "bg-gradient-to-r from-red-600 to-red-700 text-white border-red-600 shadow-lg transform scale-105"
+                            : "bg-white hover:bg-gray-50 border-gray-200 hover:border-red-300 hover:shadow-md"
                         }`}
                       >
-                        {category}
-                        <ChevronRight className="w-4 h-4" />
+                        <span className="font-medium">{category}</span>
+                        <ChevronRight
+                          className={`w-4 h-4 transition-transform duration-300 ${
+                            selectedCategory === category
+                              ? "transform rotate-90"
+                              : "group-hover:transform group-hover:translate-x-1"
+                          }`}
+                        />
                       </button>
                     ))}
                   </div>
 
-                  {/* Right: Corresponding Services */}
-                  <div className="col-span-3 grid grid-cols-2 gap-4">
-                    {serviceData[selectedCategory]?.map((service, idx) => {
-                      const getServiceLink = (category: string, service: string) => {
-                        if (category === "VAPT") {
-                          const slugMap: Record<string, string> = {
-                            "Web Application": "/services/vapt/web-application-pentesting",
-                            API: "/services/vapt/api-penetration-pentesting",
-                            Mobile: "/services/vapt/mobile-application-pentesting",
-                            Cloud: "/services/vapt/cloud-application-pentesting",
-                            Network: "/services/vapt/network-penetration-pentesting",
-                              Iot: "/services/vapt/iot-penetration-pentesting",
+                  <div className="col-span-3">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">
+                      {selectedCategory} Services
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      {serviceData[selectedCategory]?.services.map((service, idx) => {
+                        const getServiceLink = (category: string, serviceName: string) => {
+                          if (category === "VAPT") {
+                            const slugMap: Record<string, string> = {
+                              "Web Application": "/services/vapt/web-application-pentesting",
+                              API: "/services/vapt/api-penetration-pentesting",
+                              Mobile: "/services/vapt/mobile-application-pentesting",
+                              Cloud: "/services/vapt/cloud-application-pentesting",
+                              Network: "/services/vapt/network-penetration-pentesting",
+                              IoT: "/services/vapt/iot-penetration-pentesting",
+                            }
+                            return slugMap[serviceName] || "/services/vapt"
                           }
-                          return slugMap[service] || "/services/vapt"
-                        } else if (category === "Cyber Resillience") {
-                          const slugMap: Record<string, string> = {
-                            "Cyber Advisory & Consultancy": "/services/cyber-resilience/cyber-advisory-consultancy",
-                            vCISO: "/services/cyber-resilience/virtual-ciso",
-                            vDPO: "/services/cyber-resilience/virtual-dpo",
-                            "Regulatory Compliance": "/services/cyber-resilience/regulatory-compliance",
-                            "Cyber Risk Assessment": "/services/cyber-resilience/cyber-risk-assessment",
-                          }
-                          return slugMap[service] || "/services/cyber-resilience"
+                          return "#"
                         }
-                        return "#"
-                      }
 
-                      return (
-                        <Link
-                          key={idx}
-                          href={getServiceLink(selectedCategory, service)}
-                          className="text-sm hover:underline cursor-pointer hover:text-red-600 transition-colors"
-                          onClick={()=>setServicesOpen(false)}
-                        >
-                          {service}
-                        </Link>
-                      )
-                    })}
+                        const IconComponent = service.icon
+
+                        return (
+                          <Link
+                            key={idx}
+                            href={getServiceLink(selectedCategory, service.name)}
+                            className="group p-4 rounded-xl border border-gray-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 bg-white hover:bg-gradient-to-br hover:from-red-50 hover:to-white"
+                            onClick={() => setServicesOpen(false)}
+                          >
+                            <div className="flex items-start space-x-3">
+                              <div className="flex-shrink-0 p-2 rounded-lg bg-red-100 group-hover:bg-red-200 transition-colors duration-300">
+                                <IconComponent className="w-5 h-5 text-red-600" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-medium text-gray-900 group-hover:text-red-700 transition-colors duration-300 mb-1">
+                                  {service.name}
+                                </h4>
+                                <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300 leading-relaxed">
+                                  {service.description}
+                                </p>
+                              </div>
+                            </div>
+                          </Link>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
             )}
           </div>
+          <Link href="/contact" className="text-lg font-medium text-gray-700 hover:text-red-600">
+            Contact
+          </Link>
           <Link href="/blogs" className="text-lg font-medium text-gray-700 hover:text-red-600">
             Blogs
           </Link>
           <Link href="/careers" className="text-lg font-medium text-gray-700 hover:text-red-600">
             Careers
           </Link>
-          <a href="/contact" className="text-lg font-medium text-gray-700 hover:text-red-600">
-            Contact
-          </a>
 
           {/* Services */}
          
