@@ -176,6 +176,17 @@ export function Navbarlogo() {
                             }
                             return slugMap[serviceName] || "/services/vapt"
                           }
+                          else if (category === "VAPT") {
+                            const slugMap: Record<string, string> = {
+                              "Web Application": "/services/vapt/web-application-pentesting",
+                              API: "/services/vapt/api-penetration-pentesting",
+                              Mobile: "/services/vapt/mobile-application-pentesting",
+                              Cloud: "/services/vapt/cloud-application-pentesting",
+                              Network: "/services/vapt/network-penetration-pentesting",
+                              IoT: "/services/vapt/iot-penetration-pentesting",
+                            }
+                            return slugMap[serviceName] || "/services/vapt"
+                          }
                           return "#"
                         }
 
@@ -210,11 +221,11 @@ export function Navbarlogo() {
               </div>
             )}
           </div>
-          <Link href="/contact" className="text-lg font-medium text-gray-700 hover:text-red-600">
-            Contact
-          </Link>
           <Link href="/blogs" className="text-lg font-medium text-gray-700 hover:text-red-600">
             Blogs
+          </Link>
+          <Link href="/contact" className="text-lg font-medium text-gray-700 hover:text-red-600">
+            Contact
           </Link>
           <Link href="/careers" className="text-lg font-medium text-gray-700 hover:text-red-600">
             Careers

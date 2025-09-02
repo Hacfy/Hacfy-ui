@@ -1,6 +1,6 @@
 
 // import Hero2 from "@/components/AboveHero/hero2";
-import CareerSection from "@/components/career/career";
+import BlogsPage from "@/components/career/career";
 import ContactUs from "@/components/contact/contact";
 import FaqSection from "@/components/faq/faq";
 import Hero from "@/components/hero/hero";
@@ -41,7 +41,7 @@ export default function Home() {
       </div>
 
       <div>
-        <CareerSection />
+        <BlogsPage />
       </div>
       <div>
         <FaqSection />

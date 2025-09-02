@@ -3,7 +3,7 @@
 import { CardTitle } from "@/components/ui/card"
 import { CardHeader } from "@/components/ui/card"
 import type React from "react"
-import { notFound } from "next/navigation"
+import { notFound, useParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -28,9 +28,11 @@ import { useState } from "react"
 
 
 
-export default function BlogPostPage({ params }: any) {
+export default function BlogPostPage() {
+  const param = useParams()
+
   const [copied, setCopied] = useState(false)
-  const post = blogPosts.find((p) => p.id === params.slug)
+  const post = blogPosts.find((p) => p.id === param.slug)
 
   if (!post) {
     notFound()

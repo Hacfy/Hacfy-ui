@@ -77,15 +77,15 @@ The good news? With the right mix of awareness, technology, and quick responses,
     category: "Phishing",
     tags: ["cybersecurity", "phishing", "social engineering", "email security", "awareness"],
     featured: true,
-    heroImage: "/phishing-evolution-hero.jpg",
+    heroImage: "/images/phishing-hook.jpg",
     contentImages: [
       {
-        url: "/phishing-tactics-diagram.jpg",
+        url: "/images/phishing 2025-1.webp",
         alt: "Modern phishing tactics and attack vectors",
         caption: "Common phishing attack methods used by cybercriminals in 2024",
       },
       {
-        url: "/phishing-protection-steps.jpg",
+        url: "/images/Phishing Attacks (1).png",
         alt: "Steps to protect against phishing attacks",
         caption: "Essential protection strategies for individuals and organizations",
       },
@@ -160,7 +160,7 @@ The best defense? Stay alert, verify suspicious claims, and make sure your team 
         caption: "How the Noodlophile malware infiltrates systems via phishing emails",
       },
       {
-        url: "/malware-defense-strategies.jpg",
+        url: "/images/against-malware.jpg",
         alt: "Defense strategies against malware",
         caption: "Key steps enterprises can take to reduce malware risks",
       },
@@ -215,15 +215,15 @@ This new wave of Android banking malware highlights a growing trend:
     category: "Financial Fraud",
     tags: ["android malware", "nfc fraud", "banking trojan", "financial fraud", "identity theft"],
     featured: false,
-    heroImage: "/phantomcard-hero.jpg",
+    heroImage: "/images/malware-android.webp",
     contentImages: [
       {
-        url: "/phantomcard-nfc-diagram.jpg",
+        url: "/images/can-nfc-cards-be-rewritten.jpg",
         alt: "How PhantomCard exploits NFC for fraud",
         caption: "The workflow of PhantomCard’s NFC relay attack on banking users",
       },
       {
-        url: "/fake-banking-apps.jpg",
+        url: "/images/638d6f8e2c86b779b2e71e7a_make_an_nfc_business_card_in_photoshop.png",
         alt: "Fake Android banking apps",
         caption: "Examples of malicious apps impersonating Indian banks",
       },
@@ -286,15 +286,15 @@ For global enterprises, protecting data now means protecting people and processe
     category: "Social Engineering",
     tags: ["cybersecurity", "social engineering", "ransomware", "IT services", "vendor risk"],
     featured: true,
-    heroImage: "/tcs-cognizant-hero.jpg",
+    heroImage: "/images/social_engineering_attacks.jpg",
     contentImages: [
       {
-        url: "/social-engineering-vector.jpg",
+        url: "/images/vendor-security-third-party.avif",
         alt: "How social engineering attacks infiltrate enterprises",
         caption: "Social engineering attacks often bypass technical defenses by targeting people and trusted relationships.",
       },
       {
-        url: "/vendor-risk-cybersecurity.jpg",
+        url: "/images/tmistry_38299_two_colleagues_sat_in_an_office_looking_at_prog_a83338e5.webp",
         alt: "Vendor access as a cybersecurity risk",
         caption: "Third-party vendor access can become a hidden vulnerability for large enterprises.",
       },
@@ -412,15 +412,15 @@ Anyone impacted can receive free guidance from the ITRC by calling or texting 88
     category: "Identity Theft",
     tags: ["data breach", "identity theft", "cybersecurity", "ITRC", "trends"],
     featured: true,
-    heroImage: "/itrc-data-breach-hero.jpg",
+    heroImage: "/images/ITRC-logo-color-final-3.svg",
     contentImages: [
       {
-        url: "/itrc-data-breach-report.jpg",
+        url: "/images/ITRC-logo-color-final-3.jpg",
         alt: "ITRC H1 2025 Data Breach Report",
         caption: "The ITRC tracked 1,732 U.S. data compromises in H1 2025.",
       },
       {
-        url: "/supply-chain-breaches.jpg",
+        url: "/images/Supply-Chain-Breaches.jpg",
         alt: "Supply chain cyberattacks",
         caption: "Supply chain breaches impacted 690 organizations, showing the ripple effect of third-party vulnerabilities.",
       },
@@ -468,17 +468,17 @@ AI is revolutionizing phishing by making attacks smarter, faster, and more convi
     heroImage: "/ai-phishing-hero.jpg",
     contentImages: [
       {
-        url: "/ai-phishing-email.jpg",
+        url: "/images/Kaspersky_Report1.avif",
         alt: "AI-generated phishing email example",
         caption: "AI-generated phishing emails are becoming indistinguishable from legitimate ones.",
       },
       {
-        url: "/deepfake-phishing.jpg",
+        url: "/images/AI-Phishing-Detection.webp",
         alt: "Deepfake social engineering",
         caption: "Cybercriminals are using AI and deepfakes to enhance social engineering scams.",
       },
       {
-        url: "/qr-phishing.jpg",
+        url: "/images/wp-17310258646707052619860501043931.jpg",
         alt: "QR code phishing scam",
         caption: "AI-driven quishing (QR code phishing) is an emerging trend targeting mobile users.",
       },
@@ -518,20 +518,20 @@ Financial fraud is no longer about stolen cards — it’s a data-driven, AI-fue
     category: "Financial Fraud",
     tags: ["finance", "fraud", "payments", "AI", "crypto"],
     featured: false,
-    heroImage: "/financial-fraud-hero.jpg",
+    heroImage: "/images/Top-10-banking-fraud-trends.jpg",
     contentImages: [
       {
-        url: "/digital-payment-fraud.jpg",
+        url: "/images/futureinternet-15-00021-g003.png",
         alt: "Digital payment scam",
         caption: "Digital payment systems are increasingly targeted by fraudsters worldwide.",
       },
       {
-        url: "/deepfake-kyc.jpg",
+        url: "/images/99ae138eb42f81702a1075fd1e5585a8.jpg",
         alt: "Deepfake KYC verification",
         caption: "AI-generated identities are being used to bypass KYC verification systems.",
       },
       {
-        url: "/crypto-scam.jpg",
+        url: "/images/bitcoin-scams-crypto-rug-pulls-v1.avif",
         alt: "Cryptocurrency scam illustration",
         caption: "Crypto scams and rug pulls remain a growing financial fraud trend.",
       },
@@ -572,20 +572,20 @@ Social engineering is evolving into an AI-powered deception industry. Combating 
     category: "Social Engineering",
     tags: ["social engineering", "deepfake", "AI", "psychology", "fraud"],
     featured: false,
-    heroImage: "/social-engineering-hero.jpg",
+    heroImage: "/images/Identifying-Social-Engineering-Attacks.webp",
     contentImages: [
       {
-        url: "/deepfake-call.jpg",
+        url: "/images/deepfake-scaled.jpg",
         alt: "Deepfake CEO scam",
         caption: "Deepfake voice scams are being used to trick employees into wire transfers.",
       },
       {
-        url: "/ai-chatbot-fraud.jpg",
+        url: "/images/1_Ycm5qNJVQV3vyoJphxRv5g.png",
         alt: "AI chatbot scam",
         caption: "AI-powered chatbots impersonate customer support agents to steal data.",
       },
       {
-        url: "/job-scam.jpg",
+        url: "/images/How-to-Protect-Your-Business-Against-Deepfakes.jpg",
         alt: "Fake HR job scam",
         caption: "Scammers pose as HR recruiters using deepfakes and AI bots.",
       },
@@ -626,20 +626,20 @@ Ransomware is no longer a random attack but a highly organized, profit-driven in
     category: "Ransomware",
     tags: ["ransomware", "malware", "AI", "double extortion", "cybercrime"],
     featured: false,
-    heroImage: "/ransomware-hero.jpg",
+    heroImage: "/images/iStock-1188482164-e1627299833752.jpg",
     contentImages: [
       {
-        url: "/ransomware-attack.jpg",
+        url: "/images/Blog_1060x698-11-1.jpg",
         alt: "Ransomware attack screen",
         caption: "Ransomware groups now use double extortion, threatening to leak stolen data.",
       },
       {
-        url: "/critical-infrastructure-attack.jpg",
+        url: "/images/hospital-hacked.webp",
         alt: "Critical infrastructure cyberattack",
         caption: "Hospitals and power grids are increasingly targeted by ransomware gangs.",
       },
       {
-        url: "/ransomware-as-service.jpg",
+        url: "/images/experienced_cybercriminal_gaining_unanthorized_acc_2021_11_03_15.jpg",
         alt: "Ransomware-as-a-service illustration",
         caption: "Criminal groups rent ransomware kits to affiliates for profit.",
       },
@@ -679,20 +679,20 @@ Identity theft is no longer a rare incident but a mainstream cybercrime trend. B
     category: "Identity Theft",
     tags: ["identity theft", "data breach", "synthetic identity", "cybercrime", "ITRC"],
     featured: true,
-    heroImage: "/identity-theft-hero.jpg",
+    heroImage: "/images/Cyber_Criminal_National_Public_Data_Breach_Cyber_Security_Ransomware.webp",
     contentImages: [
       {
-        url: "/identity-theft-breach.jpg",
+        url: "/images/data-breach-silent-leaks.avif",
         alt: "Data breach report",
         caption: "Data breaches in 2025 have already exposed millions of consumer records.",
       },
       {
-        url: "/synthetic-identity.jpg",
+        url: "/images/SyntheticIdentityFraudWP-opengraph-1200x627.jpg",
         alt: "Synthetic identity fraud",
         caption: "AI-generated synthetic identities are being used for financial fraud.",
       },
       {
-        url: "/consumer-victims.jpg",
+        url: "/images/Identity-Theft.jpg",
         alt: "Victims of identity theft",
         caption: "Consumers face financial and emotional damage from identity crimes.",
       },
