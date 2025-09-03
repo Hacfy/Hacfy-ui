@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbarlogo } from "@/components/navbar/navbar.logo";
 
 import FooterDemo from "@/components/Footer/footer"
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Analytics Script */}
+         <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-PE1HH1GCZZ`}
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PE1HH1GCZZ');
+          `
+        }}
+      />
+
+      </head>
       <body
         className={` ${poppins.variable} antialiased bg-primary scroll-smooth`}
       >

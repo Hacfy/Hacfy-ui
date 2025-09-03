@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
+import emailjs from "emailjs-com"
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react"
 
 export default function ContactPage() {
@@ -24,47 +25,45 @@ export default function ContactPage() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
-
     if (!formData.name.trim()) newErrors.name = "Name is required"
     if (!formData.email.trim()) newErrors.email = "Email is required"
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid"
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required"
     if (!formData.subject.trim()) newErrors.subject = "Subject is required"
     if (!formData.message.trim()) newErrors.message = "Message is required"
-
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     if (!validateForm()) return
 
     setIsSubmitting(true)
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          ...formData,
+          date: new Date().toLocaleString(),
         },
-        body: JSON.stringify(formData),
-      })
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
 
-      if (response.ok) {
-        setIsSubmitted(true)
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          company: "",
-          subject: "",
-          message: "",
-        })
-      }
+      setIsSubmitted(true)
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        subject: "",
+        message: "",
+      })
     } catch (error) {
-      console.error("Error submitting form:", error)
+      console.error("EmailJS error:", error)
+      alert("Something went wrong while sending your message. Please try again.")
     } finally {
       setIsSubmitting(false)
     }

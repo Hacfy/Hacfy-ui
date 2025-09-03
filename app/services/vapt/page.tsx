@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Shield, Globe, Smartphone, Cloud, Network, Code, Thermometer } from "lucide-react"
+import CTA from "@/components/CTA/cta"
+import WhitePaper from "@/components/CTA/white"
 
 export default function VAPTPage() {
   const vaptServices = [
@@ -99,6 +101,8 @@ export default function VAPTPage() {
           </div>
         </div>
       </section>
+
+      <WhitePaper />
 
       {/* CTA Section */}
       <section className="bg-gray-50 py-20">

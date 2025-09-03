@@ -47,10 +47,11 @@ export function Navbarlogo() {
     "Cyber Resilience": {
       services: [
         { name: "Cyber Advisory & Consultancy", icon: Users, description: "Strategic cybersecurity guidance" },
-        { name: "vCISO", icon: UserCheck, description: "Virtual Chief Information Security Officer" },
-        { name: "vDPO", icon: FileCheck, description: "Virtual Data Protection Officer services" },
-        { name: "Regulatory Compliance", icon: AlertTriangle, description: "GDPR, SOX, HIPAA compliance support" },
+        { name: "vDPO & vCISO", icon: FileCheck, description: "Virtual DPO and Virtual CISO leadership" },
+        { name: "Regulatory Compliance", icon: AlertTriangle, description: "GDPR, DPDP, HIPAA, SOC2, ISO readiness" },
         { name: "Cyber Risk Assessment", icon: Search, description: "Comprehensive risk evaluation" },
+        { name: "ISO 27001 Certification", icon: UserCheck, description: "ISMS design, implementation, audit support" },
+        { name: "PCI DSS Compliance", icon: Shield, description: "Payment data protection and validation" },
       ],
     },
     "Digital Forensics": {
@@ -96,10 +97,7 @@ export function Navbarlogo() {
           <Link href="/about" className="text-lg font-medium text-gray-700 hover:text-red-600">
             About
           </Link>
-           <div
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-          >
+          <div className="relative" onMouseEnter={() => setServicesOpen(true)}>
             <button
               className="flex items-center gap-1 text-lg font-medium text-gray-700 hover:text-red-600"
               onClick={() => setServicesOpen(!servicesOpen)}
@@ -176,16 +174,16 @@ export function Navbarlogo() {
                             }
                             return slugMap[serviceName] || "/services/vapt"
                           }
-                          else if (category === "VAPT") {
+                          if (category === "Cyber Resilience") {
                             const slugMap: Record<string, string> = {
-                              "Web Application": "/services/vapt/web-application-pentesting",
-                              API: "/services/vapt/api-penetration-pentesting",
-                              Mobile: "/services/vapt/mobile-application-pentesting",
-                              Cloud: "/services/vapt/cloud-application-pentesting",
-                              Network: "/services/vapt/network-penetration-pentesting",
-                              IoT: "/services/vapt/iot-penetration-pentesting",
+                              "Cyber Advisory & Consultancy": "/services/cyber-resilience#advisory",
+                              "vDPO & vCISO": "/services/cyber-resilience#leadership",
+                              "Regulatory Compliance": "/services/cyber-resilience#regulatory-compliance",
+                              "Cyber Risk Assessment": "/services/cyber-resilience#risk-assessment",
+                              "ISO 27001 Certification": "/services/cyber-resilience#iso-27001",
+                              "PCI DSS Compliance": "/services/cyber-resilience#pci-dss",
                             }
-                            return slugMap[serviceName] || "/services/vapt"
+                            return slugMap[serviceName] || "/services/cyber-resilience"
                           }
                           return "#"
                         }
@@ -230,9 +228,6 @@ export function Navbarlogo() {
           <Link href="/careers" className="text-lg font-medium text-gray-700 hover:text-red-600">
             Careers
           </Link>
-
-          {/* Services */}
-         
         </div>
 
         {/* Right Logo */}
