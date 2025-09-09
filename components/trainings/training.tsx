@@ -11,13 +11,6 @@ export default function CloudSecuritySolutions() {
       highlight: false,
     },
     {
-      id: "02",
-      title: "Strategic Cybersecurity and Compliance Solutions",
-      description:
-        "Continuously assess your systems and processes to identify vulnerabilities, misconfigurations, and compliance gaps, ensuring alignment with industry security standards and best practices.",
-      highlight: true,
-    },
-    {
       id: "03",
       title: "Digital Forensics",
       description:
