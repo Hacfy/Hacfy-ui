@@ -376,14 +376,12 @@ export default function TrainingsPage() {
       </section>
 
       {/* Testimonials */}
-    <section className="py-20 px-4 relative overflow-hidden bg-white">
-         {/* Subtle radial background */}
+    {/* <section className="py-20 px-4 relative overflow-hidden bg-white">
          <div className="absolute inset-0 bg-gradient-to-br from-red-50/40 to-white"></div>
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(218,21,21,0.05),transparent_50%)]"></div>
          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(218,21,21,0.05),transparent_50%)]"></div>
    
          <div className="max-w-7xl mx-auto relative z-10">
-           {/* Header */}
            <div className="text-center mb-20">
              <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/10 rounded-full mb-6 backdrop-blur-sm border border-secondary/20">
                <span className="text-sm font-medium text-[rgba(218,21,21,0.952)]">Student Success Stories</span>
@@ -396,7 +394,6 @@ export default function TrainingsPage() {
              </p>
            </div>
    
-           {/* Testimonial Cards */}
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
              {testimonials.map((testimonial, index) => (
                <Card
@@ -409,26 +406,21 @@ export default function TrainingsPage() {
                  <div className="absolute inset-[1px] bg-white/95 backdrop-blur-xl rounded-lg"></div>
    
                  <CardContent className="relative p-8 z-10">
-                   {/* Quote bubble */}
                    <div className="absolute -top-2 -right-2 w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center backdrop-blur-sm border border-secondary/20 group-hover:scale-110 transition-transform duration-300">
                      <Quote className="w-6 h-6 text-[rgba(218,21,21,0.952)]" />
                    </div>
    
-                   {/* Stars */}
                    <div className="flex gap-1 mb-4">
                      {[...Array(5)].map((_, i) => (
                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                      ))}
                    </div>
    
-                   {/* Quote Text */}
                    <blockquote className="text-lg text-gray-800 mb-8 leading-relaxed font-medium relative">
                      <span className="text-4xl text-secondary/30 absolute -top-2 -left-1 font-serif"></span>
                      {testimonial.text}
-                     {/* <span className="text-4xl text-secondary/30 font-serif"></span> */}
                    </blockquote>
    
-                   {/* Author */}
                    <div className="flex items-center gap-4">
                      <div className="relative">
                        <div
@@ -460,7 +452,6 @@ export default function TrainingsPage() {
              ))}
            </div>
    
-           {/* Trust Indicator */}
            <div className="mt-20 text-center">
              <div className="inline-flex items-center gap-4 px-8 py-4 bg-secondary/10 rounded-full backdrop-blur-xl border border-secondary/20 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer">
                <div className="flex -space-x-3">
@@ -494,7 +485,7 @@ export default function TrainingsPage() {
              </div>
            </div>
          </div>
-       </section>
+       </section> */}
 
       {/* FAQ */}
       <section className="py-20 bg-white">
