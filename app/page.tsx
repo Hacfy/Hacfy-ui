@@ -33,12 +33,12 @@ export default function Home() {
         <TrainingsSection />
       </div>
 
-      <div>
+      {/* <div>
         <h1 className="text-secondary text-5xl text-center font-bold mb-16">
           Protected by Our Expertise
         </h1>
         <MarqueeDemo />
-      </div>
+      </div> */}
 
       <div>
         <BlogsPage />

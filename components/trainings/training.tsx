@@ -23,6 +23,7 @@ export default function CloudSecuritySolutions() {
       description:
         "Thoroughly analyze digital systems to uncover security breaches, trace malicious activities, and identify vulnerabilities or misconfigurations that deviate from expected norms and policies.",
       highlight: false,
+      route:"/services/digital-forensics"
     },
     {
       id: "04",
@@ -30,6 +31,7 @@ export default function CloudSecuritySolutions() {
       description:
         "Empower individuals through hands-on training to identify vulnerabilities, understand misconfigurations, and recognize deviations from cybersecurity best practices across real-world scenarios",
       highlight: false,
+      route:"/training#workshops"
     },
   ];
 
