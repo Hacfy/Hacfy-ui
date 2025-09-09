@@ -21,17 +21,14 @@ import {
   Zap,
   Lock,
   Eye,
-  GraduationCap,
-  Code,
   Target,
+  BookOpen
 } from "lucide-react"
-import { usePathname } from "next/navigation"
 
-export function Navbarlogo() {
+export function   Navbarlogo() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState("VAPT")
-  const pathname = usePathname()
 
   const serviceData: Record<string, { services: Array<{ name: string; icon: any; description: string }> }> = {
     VAPT: {
@@ -57,16 +54,15 @@ export function Navbarlogo() {
     "Digital Forensics": {
       services: [
         { name: "Incident Response", icon: Zap, description: "24/7 cyber incident response team" },
-        { name: "Malware Analysis", icon: Lock, description: "Advanced malware reverse engineering" },
         { name: "Forensic Investigation", icon: Eye, description: "Digital evidence collection & analysis" },
       ],
     },
-    Trainings: {
+    "Trainings": {
       services: [
-        { name: "Ethical Hacking", icon: GraduationCap, description: "Hands-on penetration testing training" },
-        { name: "Cloud Security", icon: Cloud, description: "Cloud platform security best practices" },
-        { name: "OSINT", icon: Target, description: "Open Source Intelligence techniques" },
-        { name: "Secure Coding", icon: Code, description: "Secure development practices" },
+        { name: "Workshops", icon: Target, description: "Short, intensive sessions on specific cybersecurity topics" },
+        { name: "Bootcamps", icon: Zap, description: "Immersive, multi-week programs for deep skill-building" },
+        { name: "Internships", icon: Users, description: "Work on real security projects with industry guidance" },
+        { name: "Corporate", icon: BookOpen, description: "Tailored programs for enterprise security teams" },
       ],
     },
   }
@@ -185,6 +181,32 @@ export function Navbarlogo() {
                             }
                             return slugMap[serviceName] || "/services/cyber-resilience"
                           }
+
+// Corrected Digital Forensics slug mapping
+                        if (category === "Digital Forensics") {
+                              const slugMap: Record<string, string> = {
+                                "Cloud Forensics": "/services/digital-forensics/cloud-forensics",
+                                "Drone Forensics": "/services/digital-forensics/drone-forensics",
+                                "Memory Forensics": "/services/digital-forensics/memory-forensics",
+                                "Email Forensics": "/services/digital-forensics/email-forensics",
+                                "IoT Forensics": "/services/digital-forensics/iot-forensics",
+                                "Database Forensics": "/services/digital-forensics/database-forensics",
+                                "Malware Analysis": "/services/digital-forensics/malware-analysis",
+                              }
+
+                              return slugMap[serviceName] || "/services/digital-forensics"
+                        }
+
+                         if (category === "Trainings") {
+                              const slugMap: Record<string, string> = {
+                                "Workshops": "/training#workshops",
+                                "Bootcamps": "/training#bootcamps",
+                                "Internships": "/training#internships",
+                                "Corporate": "/training#corporate",
+                              }
+
+                              return slugMap[serviceName] || "/services/trainings"
+                        }
                           return "#"
                         }
 

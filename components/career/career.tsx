@@ -7,21 +7,21 @@ const courses = [
     title: "The Evolution of Phishing Attacks: Why We Still Fall for It (and How to Stay Safe)",
     description:
       "Phishing has been around for decades, yet it's still one of the most successful tricks in a hacker's playbook. Discover why phishing still works and how to protect yourself in today's digital world.",
-    image: "/i2.jpg",
+    image: "/images/phishing 2025-1.webp",
     route:"/blogs/phishing-evolution-2024"
   },
   {
     title: "Financial Fraud in 2025: Digital Payments Under Siege",
     description:
       "With UPI, digital wallets, and instant payments booming worldwide, financial fraud has evolved into more sophisticated scams. Fraudsters are leveraging AI, social engineering, and deepfakes to bypass verification systems.",
-    image: "/i2.jpg",
+    image: "/images/Top-10-banking-fraud-trends.jpg",
     route:"/blogs/financial-fraud-trends-2025"
   },
   {
     title: "Identity Theft Resource Center Sees Acceleration of Data Breach Trends in H1 2025",
     description:
       "The Identity Theft Resource Center (ITRC) tracked 1,732 U.S. data compromises in the first half of 2025, putting the year on pace to break records if current trends continue. Cyberattacks remain the leading cause, with financial services and healthcare among the most targeted sectors.",
-    image: "/i2.jpg",
+    image: "/images/ITRC-logo-color-final-3.svg",
     route:"blogs/itrc-h1-2025-data-breach-trends"
   },
 ];
@@ -48,7 +48,7 @@ function BlogsCard({
         alt={title}
         width={300}
         height={200}
-        className="rounded-md"
+        className="rounded-md "
       />
       <h3 className="text-lg font-bold text-secondary mt-4">{title}</h3>
       <p className="text-gray-900 mt-2">{description}</p>
