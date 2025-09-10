@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import emailjs from "emailjs-com"
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react"
+import Turnstile from "react-turnstile" 
 
 export default function ContactPage() {
 const [formData, setFormData] = useState({
@@ -29,6 +30,7 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null)
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
@@ -204,64 +206,66 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                   <h2 className="text-2xl font-bold text-foreground mb-6">Send us a Message</h2>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Category Selection */}
                     <div className="space-y-4">
-  <label className="block text-sm font-medium text-foreground mb-2">
-    What are you interested in? *
-  </label>
-  <div className="flex space-x-6">
-    <label className="flex items-center space-x-2">
-      <input
-        type="radio"
-        name="category"
-        value="Training"
-        checked={formData.category === "Training"}
-        onChange={handleInputChange}
-        className="accent-secondary"
-      />
-      <span>Training</span>
-    </label>
-    <label className="flex items-center space-x-2">
-      <input
-        type="radio"
-        name="category"
-        value="Services"
-        checked={formData.category === "Services"}
-        onChange={handleInputChange}
-        className="accent-secondary"
-      />
-      <span>Services</span>
-    </label>
-  </div>
-  {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
-</div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        What are you interested in? *
+                      </label>
+                      <div className="flex space-x-6">
+                        <label className="flex items-center space-x-2">
+                          <input
+                            type="radio"
+                            name="category"
+                            value="Training"
+                            checked={formData.category === "Training"}
+                            onChange={handleInputChange}
+                            className="accent-secondary"
+                          />
+                          <span>Training</span>
+                        </label>
+                        <label className="flex items-center space-x-2">
+                          <input
+                            type="radio"
+                            name="category"
+                            value="Services"
+                            checked={formData.category === "Services"}
+                            onChange={handleInputChange}
+                            className="accent-secondary"
+                          />
+                          <span>Services</span>
+                        </label>
+                      </div>
+                      {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
+                    </div>
 
-{/* Dropdown - Shows only when a category is selected */}
-{formData.category && (
-  <div className="mt-4">
-    <label htmlFor="option" className="block text-sm font-medium text-foreground mb-2">
-      Select {formData.category} *
-    </label>
-    <select
-      id="option"
-      name="option"
-      value={formData.option}
-      //@ts-expect-error
-      onChange={handleInputChange}
-      className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary ${
-        errors.option ? "border-red-500" : "border-border"
-      }`}
-    >
-      <option value="">-- Choose an option --</option>
-      {(formData.category === "Training" ? trainingOptions : serviceOptions).map((opt) => (
-        <option key={opt} value={opt}>
-          {opt}
-        </option>
-      ))}
-    </select>
-    {errors.option && <p className="text-red-500 text-sm mt-1">{errors.option}</p>}
-  </div>
-)}
+                    {/* Dropdown */}
+                    {formData.category && (
+                      <div className="mt-4">
+                        <label htmlFor="option" className="block text-sm font-medium text-foreground mb-2">
+                          Select {formData.category} *
+                        </label>
+                        <select
+                          id="option"
+                          name="option"
+                          value={formData.option}
+                          //@ts-ignore
+                          onChange={handleInputChange}
+                          className={`w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary ${
+                            errors.option ? "border-red-500" : "border-border"
+                          }`}
+                        >
+                          <option value="">-- Choose an option --</option>
+                          {(formData.category === "Training" ? trainingOptions : serviceOptions).map((opt) => (
+                            <option key={opt} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
+                        </select>
+                        {errors.option && <p className="text-red-500 text-sm mt-1">{errors.option}</p>}
+                      </div>
+                    )}
 
+                    {/* Other Inputs */}
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -359,6 +363,13 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                       />
                       {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                     </div>
+
+                    {/* ✅ Cloudflare Turnstile CAPTCHA */}
+                    <Turnstile
+                      sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                      onVerify={(token) => setCaptchaToken(token)}
+                      className="flex justify-center my-4"
+                    />
 
                     <Button
                       type="submit"

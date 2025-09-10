@@ -53,8 +53,8 @@ export function   Navbarlogo() {
     },
     "Digital Forensics": {
       services: [
-        { name: "Incident Response", icon: Zap, description: "24/7 cyber incident response team" },
         { name: "Forensic Investigation", icon: Eye, description: "Digital evidence collection & analysis" },
+        { name: "Malware Analysis", icon: Lock, description: "Malware analysis and reverse engineering" },
       ],
     },
     "Trainings": {
@@ -185,13 +185,8 @@ export function   Navbarlogo() {
 // Corrected Digital Forensics slug mapping
                         if (category === "Digital Forensics") {
                               const slugMap: Record<string, string> = {
-                                "Cloud Forensics": "/services/digital-forensics/cloud-forensics",
-                                "Drone Forensics": "/services/digital-forensics/drone-forensics",
-                                "Memory Forensics": "/services/digital-forensics/memory-forensics",
-                                "Email Forensics": "/services/digital-forensics/email-forensics",
-                                "IoT Forensics": "/services/digital-forensics/iot-forensics",
-                                "Database Forensics": "/services/digital-forensics/database-forensics",
-                                "Malware Analysis": "/services/digital-forensics/malware-analysis",
+                                "Malware Analysis": "/services/digital-forensics#malware-analysis",
+                                "Forensic Investigation":"/services/digital-forensics#forensic-investigation",
                               }
 
                               return slugMap[serviceName] || "/services/digital-forensics"

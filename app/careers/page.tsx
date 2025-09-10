@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import emailjs from "@emailjs/browser"
 import { useRouter, useSearchParams } from "next/navigation"
+import Turnstile from "react-turnstile"
 
 export default function CareersPage() {
   const [formData, setFormData] = useState({
@@ -20,11 +21,12 @@ export default function CareersPage() {
     phone: "",
     experience: "",
     role: "",
-    resume: null as File | null,
+    resume: "", // ✅ Google Drive link as string
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+    const [captchaToken, setCaptchaToken] = useState<string | null>(null)
 
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -35,9 +37,9 @@ export default function CareersPage() {
     if (!formData.email.trim()) newErrors.email = "Email is required"
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid"
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required"
-    if (!formData.experience.trim()) newErrors.experience = "Work experience is required"
     if (!formData.role.trim()) newErrors.role = "Role is required"
-    if (!formData.resume) newErrors.resume = "Resume is required"
+    if (!formData.resume.trim()) newErrors.resume = "Resume (Google Drive link) is required"
+    if (!formData.experience.trim()) newErrors.experience = "Work experience is required"
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
@@ -54,23 +56,15 @@ export default function CareersPage() {
     }
   }
 
-  // Helper: persist form data to sessionStorage (including resume as base64)
+  // Helper: persist form data to sessionStorage
   async function persistPendingApplication() {
-    let resumeBase64 = ""
-    if (formData.resume) {
-      try {
-        resumeBase64 = await toBase64(formData.resume)
-      } catch (e) {
-        console.error("[v0] Failed to encode resume to base64", e)
-      }
-    }
     const payload = {
       fullName: formData.fullName,
       email: formData.email,
       phone: formData.phone,
       experience: formData.experience,
       role: formData.role,
-      resumeBase64,
+      resume: formData.resume, // ✅ Save as string
       ts: Date.now(),
     }
     try {
@@ -81,19 +75,11 @@ export default function CareersPage() {
   }
 
   // Helper: load pending application
-  function loadPendingApplication(): {
-    fullName: string
-    email: string
-    phone: string
-    experience: string
-    role: string
-    resumeBase64?: string
-  } | null {
+  function loadPendingApplication() {
     try {
       const raw = sessionStorage.getItem("pendingApplication")
       if (!raw) return null
-      const obj = JSON.parse(raw)
-      return obj
+      return JSON.parse(raw)
     } catch {
       return null
     }
@@ -119,7 +105,6 @@ export default function CareersPage() {
 
       try {
         setIsSubmitting(true)
-        // Use saved payload; we can call emailjs directly with base64 resume
         await emailjs.send(
           process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
           process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID1!,
@@ -129,7 +114,7 @@ export default function CareersPage() {
             phone: saved.phone,
             role: saved.role,
             experience: saved.experience,
-            resume: saved.resumeBase64 || "",
+            resume: saved.resume, // ✅ Use string
           },
           process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
         )
@@ -145,39 +130,26 @@ export default function CareersPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateForm()) return
 
     setIsSubmitting(true)
     try {
-      // Persist the filled data first so we can resume after auth if needed
       await persistPendingApplication()
-
       const isAuthed = await checkAuth()
       if (!isAuthed) {
-        // Redirect to login with next back to /careers and autoSubmit=1
         const nextUrl = encodeURIComponent("/careers?autoSubmit=1")
         router.push(`/auth/login?next=${nextUrl}`)
         return
-      }
-
-      // If already authenticated, submit normally (using currently entered values)
-      let resumeBase64 = ""
-      if (formData.resume) {
-        resumeBase64 = await toBase64(formData.resume)
       }
 
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID1!,
         {
-          fullName: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          role: formData.role,
-          experience: formData.experience,
-          resume: resumeBase64,
+          ...formData,
+          captcha: captchaToken ?? "",
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
       )
@@ -190,38 +162,16 @@ export default function CareersPage() {
         phone: "",
         experience: "",
         role: "",
-        resume: null,
+        resume: "",
       })
+      setCaptchaToken(null)
     } catch (error) {
-      console.error("❌ Error sending application:", error)
+      console.error("Error sending application:", error)
       alert("Failed to send application. Please try again later.")
     } finally {
       setIsSubmitting(false)
     }
   }
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (
-      file &&
-      (file.type === "application/pdf" ||
-        file.type === "application/msword" ||
-        file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-    ) {
-      setFormData((prev) => ({ ...prev, resume: file }))
-      setErrors((prev) => ({ ...prev, resume: "" }))
-    } else {
-      setErrors((prev) => ({ ...prev, resume: "Only PDF/DOC/DOCX files are allowed" }))
-    }
-  }
-
-  const toBase64 = (file: File): Promise<string> =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => resolve(reader.result as string)
-      reader.onerror = (error) => reject(error)
-    })
 
   if (showSuccess) {
     return (
@@ -245,8 +195,10 @@ export default function CareersPage() {
       </div>
     )
   }
+
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero Section */}
       <div className="relative py-12 sm:py-16 md:py-24 px-4 bg-gradient-to-br from-secondary via-secondary to-red-600 overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute inset-0 opacity-20">
@@ -259,11 +211,9 @@ export default function CareersPage() {
           ></div>
         </div>
         <div className="relative max-w-6xl mx-auto text-center animate-fade-in">
-          <div className="flex flex-col sm:flex-row items-center justify-center mb-6 sm:mb-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white leading-tight tracking-tight">
-              Join Hacfy
-            </h1>
-          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black text-white leading-tight tracking-tight">
+            Join Hacfy
+          </h1>
           <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/95 mb-4 sm:mb-6 font-bold px-2">
             Build Your Career With Us
           </p>
@@ -274,6 +224,7 @@ export default function CareersPage() {
         </div>
       </div>
 
+      {/* Why Choose Section */}
       <div className="py-12 sm:py-16 md:py-24 px-4 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 md:mb-20 animate-slide-up">
@@ -295,8 +246,7 @@ export default function CareersPage() {
               {
                 icon: Users,
                 title: "Great Team",
-                description:
-                  "Collaborate with talented professionals from around the world in a supportive environment",
+                description: "Collaborate with talented professionals from around the world in a supportive environment",
                 color: "bg-green-50 text-green-600",
               },
               {
@@ -334,13 +284,11 @@ export default function CareersPage() {
         </div>
       </div>
 
+      {/* Apply Section */}
       <div className="py-12 sm:py-16 md:py-24 px-4 bg-background">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 animate-slide-up">
-            <div className="flex flex-col sm:flex-row items-center justify-center mb-4 sm:mb-6 space-x-0 sm:space-x-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black gradient-text leading-[1.2]">Apply Now</h2>
-            </div>
-
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black gradient-text leading-[1.2]">Apply Now</h2>
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto px-4">
               Ready to start your journey? Fill out the form below and let's build something amazing together.
             </p>
@@ -355,6 +303,7 @@ export default function CareersPage() {
             </CardHeader>
             <CardContent className="px-4 sm:px-6 md:px-10 pb-8 sm:pb-10">
               <form onSubmit={handleSubmit} className="space-y-8 sm:space-y-10">
+                {/* Full Name + Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div className="space-y-3 sm:space-y-4">
                     <Label htmlFor="fullName" className="text-base sm:text-lg font-bold text-foreground">
@@ -364,7 +313,9 @@ export default function CareersPage() {
                       id="fullName"
                       value={formData.fullName}
                       onChange={(e) => setFormData((prev) => ({ ...prev, fullName: e.target.value }))}
-                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${errors.fullName ? "border-destructive" : "border-border"}`}
+                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
+                        errors.fullName ? "border-destructive" : "border-border"
+                      }`}
                       placeholder="Enter your full name"
                     />
                     {errors.fullName && <p className="text-destructive text-sm font-semibold">{errors.fullName}</p>}
@@ -379,13 +330,16 @@ export default function CareersPage() {
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${errors.email ? "border-destructive" : "border-border"}`}
+                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
+                        errors.email ? "border-destructive" : "border-border"
+                      }`}
                       placeholder="Enter your email address"
                     />
                     {errors.email && <p className="text-destructive text-sm font-semibold">{errors.email}</p>}
                   </div>
                 </div>
 
+                {/* Phone + Role */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div className="space-y-3 sm:space-y-4">
                     <Label htmlFor="phone" className="text-base sm:text-lg font-bold text-foreground">
@@ -395,7 +349,9 @@ export default function CareersPage() {
                       id="phone"
                       value={formData.phone}
                       onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${errors.phone ? "border-destructive" : "border-border"}`}
+                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
+                        errors.phone ? "border-destructive" : "border-border"
+                      }`}
                       placeholder="Enter your phone number"
                     />
                     {errors.phone && <p className="text-destructive text-sm font-semibold">{errors.phone}</p>}
@@ -410,15 +366,17 @@ export default function CareersPage() {
                       onValueChange={(value) => setFormData((prev) => ({ ...prev, role: value }))}
                     >
                       <SelectTrigger
-                        className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${errors.role ? "border-destructive" : "border-border"}`}
+                        className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
+                          errors.role ? "border-destructive" : "border-border"
+                        }`}
                       >
                         <SelectValue placeholder="Select a role" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="frontend-developer">VAPT Analyst</SelectItem>
-                        <SelectItem value="backend-developer">Cybersecurity Trainer</SelectItem>
-                        <SelectItem value="fullstack-developer">Project Manager</SelectItem>
-                        <SelectItem value="ui-ux-designer">Digital Marketing</SelectItem>
+                        <SelectItem value="vapt-analyst">VAPT Analyst</SelectItem>
+                        <SelectItem value="cybersecurity-trainer">Cybersecurity Trainer</SelectItem>
+                        <SelectItem value="project-manager">Project Manager</SelectItem>
+                        <SelectItem value="digital-marketing">Digital Marketing</SelectItem>
                         <SelectItem value="product-manager">Product Manager</SelectItem>
                         <SelectItem value="data-scientist">Data Scientist</SelectItem>
                         <SelectItem value="devops-engineer">DevOps Engineer</SelectItem>
@@ -428,40 +386,25 @@ export default function CareersPage() {
                     {errors.role && <p className="text-destructive text-sm font-semibold">{errors.role}</p>}
                   </div>
                 </div>
+
+                {/* Resume Link */}
                 <div className="space-y-3 sm:space-y-4">
                   <Label htmlFor="resume" className="text-base sm:text-lg font-bold text-foreground">
-                    Resume Upload (PDF/DOC) *
+                    Resume (Google Drive Link) *
                   </Label>
-
-                  <div
-                    className={`flex items-center justify-between h-12 sm:h-14 w-full border-2 rounded-xl overflow-hidden cursor-pointer
-      ${errors.resume ? "border-destructive" : "border-border"}`}
-                  >
-                    {/* Hidden real input */}
-                    <input
-                      id="resume"
-                      type="file"
-                      accept=".pdf,.doc,.docx"
-                      onChange={handleFileChange}
-                      className="hidden"
-                    />
-
-                    {/* Fake input UI */}
-                    <label
-                      htmlFor="resume"
-                      className="bg-secondary text-white px-4 py-2 h-full flex items-center font-semibold text-sm sm:text-base cursor-pointer hover:bg-secondary/90"
-                    >
-                      Choose File
-                    </label>
-                    <span className="px-3 text-sm sm:text-base text-muted-foreground truncate">
-                      {formData.resume ? formData.resume.name : "No file chosen"}
-                    </span>
-                  </div>
-
-                  {/* Error message */}
+                  <Input
+                    id="resume"
+                    value={formData.resume}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, resume: e.target.value }))}
+                    className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
+                      errors.resume ? "border-destructive" : "border-border"
+                    }`}
+                    placeholder="Paste your Google Drive link"
+                  />
                   {errors.resume && <p className="text-destructive text-sm font-semibold">{errors.resume}</p>}
                 </div>
 
+                {/* Experience */}
                 <div className="space-y-3 sm:space-y-4">
                   <Label htmlFor="experience" className="text-base sm:text-lg font-bold text-foreground">
                     Work Experience *
@@ -470,28 +413,34 @@ export default function CareersPage() {
                     id="experience"
                     value={formData.experience}
                     onChange={(e) => setFormData((prev) => ({ ...prev, experience: e.target.value }))}
-                    className={`min-h-32 sm:min-h-40 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 resize-none rounded-xl ${errors.experience ? "border-destructive" : "border-border"}`}
-                    placeholder="Tell us about your work experience, skills, achievements, and what makes you passionate about this role..."
+                    className={`min-h-[120px] sm:min-h-[160px] text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
+                      errors.experience ? "border-destructive" : "border-border"
+                    }`}
+                    placeholder="Tell us about your relevant work experience"
                   />
                   {errors.experience && <p className="text-destructive text-sm font-semibold">{errors.experience}</p>}
                 </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full h-14 sm:h-16 text-lg sm:text-xl font-bold bg-secondary hover:bg-secondary/90 text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-xl rounded-xl"
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                      <span className="text-base sm:text-xl">Submitting Application...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-3 sm:gap-4">
-                      <span className="text-base sm:text-xl">Submit Application</span>
-                    </div>
-                  )}
-                </Button>
+                      <div className="flex justify-center">
+                  <Turnstile
+                    sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    onVerify={(token) => setCaptchaToken(token)}
+                  />
+                </div>
+                {errors.captcha && (
+                  <p className="text-destructive text-sm font-semibold text-center">{errors.captcha}</p>
+                )}
+
+                {/* Submit Button */}
+                <div className="text-center pt-4 sm:pt-6">
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-12 sm:h-14 text-base sm:text-lg font-bold bg-secondary hover:bg-secondary/90 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Application"}
+                  </Button>
+                </div>
               </form>
             </CardContent>
           </Card>

@@ -199,7 +199,7 @@ export default function DigitalForensicsPage() {
       </header>
 
       {/* Core Forensics Capabilities */}
-      <section className="py-12 md:py-20 bg-red-50/40">
+      <section className="py-12 md:py-20 bg-red-50/40" id="forensic-investigation">
         <div className="max-w-6xl mx-auto px-4">
           <p className="text-xs md:text-sm font-semibold text-secondary tracking-wide uppercase mb-2">
             Core Capabilities
@@ -260,7 +260,7 @@ export default function DigitalForensicsPage() {
           "Develop signatures and indicators of compromise (IOCs)",
           "Provide actionable intelligence to strengthen future defenses",
         ]}
-        image="/malware-analysis-laboratory.jpg"
+        image="/images/malware.jpg"
         imageAlt="Malware analysis laboratory"
       />
 
