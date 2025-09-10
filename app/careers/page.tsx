@@ -70,7 +70,7 @@ export default function CareersPage() {
     try {
       sessionStorage.setItem("pendingApplication", JSON.stringify(payload))
     } catch (e) {
-      console.error("[v0] Failed to store pendingApplication", e)
+      console.error(" Failed to store pendingApplication", e)
     }
   }
 
@@ -114,7 +114,7 @@ export default function CareersPage() {
             phone: saved.phone,
             role: saved.role,
             experience: saved.experience,
-            resume: saved.resume, // ✅ Use string
+            resume: saved.resume, 
           },
           process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
         )
@@ -149,7 +149,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID1!,
         {
           ...formData,
-          captcha: captchaToken ?? "",
+         
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
       )
