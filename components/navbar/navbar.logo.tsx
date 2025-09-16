@@ -22,12 +22,15 @@ import {
   Lock,
   Eye,
   Target,
-  BookOpen
+  BookOpen,
+  Menu,
 } from "lucide-react"
 
-export function   Navbarlogo() {
+export function Navbarlogo() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [mobileSelectedCategory, setMobileSelectedCategory] = useState("VAPT")
   const [selectedCategory, setSelectedCategory] = useState("VAPT")
 
   const serviceData: Record<string, { services: Array<{ name: string; icon: any; description: string }> }> = {
@@ -57,7 +60,7 @@ export function   Navbarlogo() {
         { name: "Malware Analysis", icon: Lock, description: "Malware analysis and reverse engineering" },
       ],
     },
-    "Trainings": {
+    Trainings: {
       services: [
         { name: "Workshops", icon: Target, description: "Short, intensive sessions on specific cybersecurity topics" },
         { name: "Bootcamps", icon: Zap, description: "Immersive, multi-week programs for deep skill-building" },
@@ -71,11 +74,60 @@ export function   Navbarlogo() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setServicesOpen(false)
+        setMobileServicesOpen(false)
+        setIsSidebarOpen(false)
       }
     }
     document.addEventListener("keydown", handleKeyDown)
     return () => document.removeEventListener("keydown", handleKeyDown)
   }, [])
+
+  const closeMobileMenu = () => {
+    setIsSidebarOpen(false)
+    setMobileServicesOpen(false)
+  }
+
+  const getServiceLink = (category: string, serviceName: string) => {
+    if (category === "VAPT") {
+      const slugMap: Record<string, string> = {
+        "Web Application": "/services/vapt/web-application-pentesting",
+        API: "/services/vapt/api-penetration-pentesting",
+        Mobile: "/services/vapt/mobile-application-pentesting",
+        Cloud: "/services/vapt/cloud-application-pentesting",
+        Network: "/services/vapt/network-penetration-pentesting",
+        IoT: "/services/vapt/iot-penetration-pentesting",
+      }
+      return slugMap[serviceName] || "/services/vapt"
+    }
+    if (category === "Cyber Resilience") {
+      const slugMap: Record<string, string> = {
+        "Cyber Advisory & Consultancy": "/services/cyber-resilience#advisory",
+        "vDPO & vCISO": "/services/cyber-resilience#leadership",
+        "Regulatory Compliance": "/services/cyber-resilience#regulatory-compliance",
+        "Cyber Risk Assessment": "/services/cyber-resilience#risk-assessment",
+        "ISO 27001 Certification": "/services/cyber-resilience#iso-27001",
+        "PCI DSS Compliance": "/services/cyber-resilience#pci-dss",
+      }
+      return slugMap[serviceName] || "/services/cyber-resilience"
+    }
+    if (category === "Digital Forensics") {
+      const slugMap: Record<string, string> = {
+        "Malware Analysis": "/services/digital-forensics#malware-analysis",
+        "Forensic Investigation": "/services/digital-forensics#forensic-investigation",
+      }
+      return slugMap[serviceName] || "/services/digital-forensics"
+    }
+    if (category === "Trainings") {
+      const slugMap: Record<string, string> = {
+        Workshops: "/training#workshops",
+        Bootcamps: "/training#bootcamps",
+        Internships: "/training#internships",
+        Corporate: "/training#corporate",
+      }
+      return slugMap[serviceName] || "/services/trainings"
+    }
+    return "#"
+  }
 
   return (
     <nav className={`bg-white shadow-md sticky top-0 z-50 py-2 transition-all duration-300 `}>
@@ -158,53 +210,6 @@ export function   Navbarlogo() {
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
                       {serviceData[selectedCategory]?.services.map((service, idx) => {
-                        const getServiceLink = (category: string, serviceName: string) => {
-                          if (category === "VAPT") {
-                            const slugMap: Record<string, string> = {
-                              "Web Application": "/services/vapt/web-application-pentesting",
-                              API: "/services/vapt/api-penetration-pentesting",
-                              Mobile: "/services/vapt/mobile-application-pentesting",
-                              Cloud: "/services/vapt/cloud-application-pentesting",
-                              Network: "/services/vapt/network-penetration-pentesting",
-                              IoT: "/services/vapt/iot-penetration-pentesting",
-                            }
-                            return slugMap[serviceName] || "/services/vapt"
-                          }
-                          if (category === "Cyber Resilience") {
-                            const slugMap: Record<string, string> = {
-                              "Cyber Advisory & Consultancy": "/services/cyber-resilience#advisory",
-                              "vDPO & vCISO": "/services/cyber-resilience#leadership",
-                              "Regulatory Compliance": "/services/cyber-resilience#regulatory-compliance",
-                              "Cyber Risk Assessment": "/services/cyber-resilience#risk-assessment",
-                              "ISO 27001 Certification": "/services/cyber-resilience#iso-27001",
-                              "PCI DSS Compliance": "/services/cyber-resilience#pci-dss",
-                            }
-                            return slugMap[serviceName] || "/services/cyber-resilience"
-                          }
-
-// Corrected Digital Forensics slug mapping
-                        if (category === "Digital Forensics") {
-                              const slugMap: Record<string, string> = {
-                                "Malware Analysis": "/services/digital-forensics#malware-analysis",
-                                "Forensic Investigation":"/services/digital-forensics#forensic-investigation",
-                              }
-
-                              return slugMap[serviceName] || "/services/digital-forensics"
-                        }
-
-                         if (category === "Trainings") {
-                              const slugMap: Record<string, string> = {
-                                "Workshops": "/training#workshops",
-                                "Bootcamps": "/training#bootcamps",
-                                "Internships": "/training#internships",
-                                "Corporate": "/training#corporate",
-                              }
-
-                              return slugMap[serviceName] || "/services/trainings"
-                        }
-                          return "#"
-                        }
-
                         const IconComponent = service.icon
 
                         return (
@@ -252,23 +257,144 @@ export function   Navbarlogo() {
           <Image src="/images/logo.webp" alt="Right Logo" width={150} height={100} />
         </Link>
 
-        {/* Mobile Hamburger */}
-        <button className="md:hidden text-gray-700 focus:outline-none" onClick={() => setIsSidebarOpen(true)}>
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+        <button
+          className="md:hidden text-gray-700 hover:text-red-600 focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+          onClick={() => setIsSidebarOpen(true)}
+        >
+          <Menu className="w-6 h-6" />
         </button>
       </div>
 
-      {/* Mobile Sidebar */}
       {isSidebarOpen && (
         <div className="fixed inset-0 z-50 flex">
-          <div className="fixed inset-0 bg-black opacity-50" onClick={() => setIsSidebarOpen(false)} />
-          <div className="relative bg-white w-64 h-full shadow-lg p-6">
-            <button className="absolute top-4 right-4 text-gray-700" onClick={() => setIsSidebarOpen(false)}>
-              <X className="w-6 h-6" />
-            </button>
-            {/* Optional mobile links */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+          <div className="relative bg-white w-80 h-full shadow-2xl overflow-y-auto">
+            {/* Mobile Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <Image src="/images/hacfy.webp" alt="Logo" width={80} height={80} />
+              <button
+                className="text-gray-400 hover:text-red-600 transition-colors duration-200 p-2 rounded-full hover:bg-red-50"
+                onClick={() => setIsSidebarOpen(false)}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="p-6 space-y-2">
+              <Link
+                href="/"
+                className="flex items-center px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
+                onClick={closeMobileMenu}
+              >
+                Home
+              </Link>
+
+              <Link
+                href="/about"
+                className="flex items-center px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
+                onClick={closeMobileMenu}
+              >
+                About
+              </Link>
+
+              {/* Mobile Services Dropdown */}
+              <div className="space-y-2">
+                <button
+                  className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                >
+                  Services
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-300 ${
+                      mobileServicesOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                  />
+                </button>
+
+                {mobileServicesOpen && (
+                  <div className="ml-4 space-y-2 border-l-2 border-red-100 pl-4">
+                    {Object.keys(serviceData).map((category) => (
+                      <div key={category} className="space-y-2">
+                        <button
+                          className={`flex items-center justify-between w-full px-3 py-2 text-left rounded-lg transition-all duration-200 ${
+                            mobileSelectedCategory === category
+                              ? "bg-red-600 text-white"
+                              : "text-gray-600 hover:text-red-600 hover:bg-red-50"
+                          }`}
+                          onClick={() => setMobileSelectedCategory(mobileSelectedCategory === category ? "" : category)}
+                        >
+                          <span className="font-medium text-sm">{category}</span>
+                          <ChevronRight
+                            className={`w-3 h-3 transition-transform duration-300 ${
+                              mobileSelectedCategory === category ? "rotate-90" : ""
+                            }`}
+                          />
+                        </button>
+
+                        {mobileSelectedCategory === category && (
+                          <div className="ml-4 space-y-1 border-l border-red-200 pl-3">
+                            {serviceData[category].services.map((service, idx) => {
+                              const IconComponent = service.icon
+                              return (
+                                <Link
+                                  key={idx}
+                                  href={getServiceLink(category, service.name)}
+                                  className="flex items-center space-x-3 px-3 py-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 group"
+                                  onClick={closeMobileMenu}
+                                >
+                                  <div className="flex-shrink-0 p-1 rounded bg-red-100 group-hover:bg-red-200 transition-colors duration-200">
+                                    <IconComponent className="w-3 h-3 text-red-600" />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-sm font-medium">{service.name}</div>
+                                    <div className="text-xs text-gray-500 truncate">{service.description}</div>
+                                  </div>
+                                </Link>
+                              )
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/blogs"
+                className="flex items-center px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
+                onClick={closeMobileMenu}
+              >
+                Blogs
+              </Link>
+
+              <Link
+                href="/contact"
+                className="flex items-center px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
+                onClick={closeMobileMenu}
+              >
+                Contact
+              </Link>
+
+              <Link
+                href="/careers"
+                className="flex items-center px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
+                onClick={closeMobileMenu}
+              >
+                Careers
+              </Link>
+            </div>
+
+            {/* Mobile Footer Logo */}
+            <div className="p-6 border-t border-gray-200 mt-auto">
+              <Link href="https://cyberchetana.hacfy.com/" onClick={closeMobileMenu}>
+                <Image src="/images/logo.webp" alt="Right Logo" width={120} height={80} className="mx-auto" />
+              </Link>
+            </div>
           </div>
         </div>
       )}

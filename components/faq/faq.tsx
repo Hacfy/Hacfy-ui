@@ -39,54 +39,43 @@ const FaqSection: FC = () => {
                 1. What is Cybersecurity, and why is it important?
               </AccordionTrigger>
               <AccordionContent className="text-[#0f0a49]">
-                Cybersecurity is the practice of protecting systems, networks,
-                and programs from digital attacks. It’s crucial to ensure the
-                integrity, confidentiality, and availability of data.
+                Cybersecurity protects digital systems, data, and networks from cyber attacks, ensuring business continuity and data privacy.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-2">
               <AccordionTrigger>
-                2. Who can benefit from Hacfy&apos;s cybersecurity courses?
+                2. . Who should use Hacfy’s Cybersecurity Services?
               </AccordionTrigger>
               <AccordionContent className="text-[#0f0a49]">
-                Anyone interested in improving their knowledge of digital
-                security, from individuals looking to secure personal data to
-                professionals wanting to expand their career in cybersecurity.
+               Businesses, government agencies, and organizations handling sensitive data need Hacfy’s services to improve security and stay compliant.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3">
               <AccordionTrigger>
-                3. What types of Cybersecurity courses does Hacfy offer?
+                3. What services does Hacfy offer?
               </AccordionTrigger>
               <AccordionContent className="text-[#0f0a49]">
-                Hacfy offers a range of courses, including network security,
-                ethical hacking, incident response, and compliance. Courses are
-                designed for various levels of expertise.
+          Hacfy provides vCISO, DFIR, PCI DSS compliance, Penetration Testing, Risk Assessment, and Security Audits.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-4">
               <AccordionTrigger>
-                4. Are Hacfy&apos;s courses for beginners with no prior
-                cybersecurity knowledge?
+                4. Why choose vCISO and DFIR services?
               </AccordionTrigger>
               <AccordionContent className="text-[#0f0a49]">
-                Yes! Hacfy provides foundational courses for complete beginners
-                as well as advanced courses for those with more experience.
+                vCISO offers expert security strategy without full-time cost, and DFIR helps investigate and respond to cyber incidents quickly.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-5">
               <AccordionTrigger>
-                5. How are Hacfy&apos;s courses structured, what learning
-                formats are available?
+                5. How does Hacfy help with compliance?
               </AccordionTrigger>
               <AccordionContent className="text-[#0f0a49]">
-                Courses can be self-paced or instructor-led, with a mix of
-                videos, interactive labs, and quizzes. Virtual classrooms and
-                live workshops are also available.
+               We guide businesses to meet PCI DSS, GDPR, and other regulatory standards with audits, gap assessments, and actionable remediation plans.
               </AccordionContent>
             </AccordionItem>
           </Accordion>

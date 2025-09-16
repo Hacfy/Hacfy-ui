@@ -699,6 +699,281 @@ Identity theft is no longer a rare incident but a mainstream cybercrime trend. B
     ],
   },
 
+   {
+    id: "tycoon-phishing-obfuscation-techniques-2025",
+    title: "Tycoon's Deceptive Links: How Phishers Obscure URLs in 2025",
+    excerpt:
+      "Discover how cybercriminals behind the Tycoon phishing-as-a-service kit are using advanced tricks—like invisible spaces, fake characters, and broken links—to slip malicious URLs past security systems.",
+    content: `As our email defenses get smarter, phishing kits like *Tycoon PhaaS* keep getting craftier. According to Barracuda’s latest Threat Spotlight, Tycoon now uses a host of sneaky techniques to hide malicious links inside emails—making detection a real challenge.
+
+###  How Tycoon Obscures Malicious Links
+
+- *Invisible spaces*: Attackers insert %20 repeatedly into URLs, pushing the harmful part out of sight from scanners and making detection harder :contentReference[oaicite:0]{index=0}.
+- *Odd Unicode characters*: These might look like a dot but are actually distinct symbols—used to confuse both human readers and automated filters :contentReference[oaicite:1]{index=1}.
+- *Hidden email addresses or codes*: Extra bits are added to the end of the URL, potentially triggering malicious redirects or tracking—but they stay unseen :contentReference[oaicite:2]{index=2}.
+- *Redundant protocol prefix*: URLs are crafted with weird structures—like two “https” segments or missing //—so that the visible part looks harmless while hiding the true destination :contentReference[oaicite:3]{index=3}.
+- *‘@’ trick*: URLs can include something like office365@malicious.com; browsers treat everything before @ as user info, hiding the real domain that comes after :contentReference[oaicite:4]{index=4}.
+- *Mixed hyperlink structure*: By making only part of the URL hyperlinked—and leaving the malicious part as plain text—scanners ignore the dangerous piece entirely :contentReference[oaicite:5]{index=5}.
+- *Fake CAPTCHA or voicemail branding*: Emails may come disguised as authenticated messages—like a CAPTCHA check or trusted service notification—to lure users further in :contentReference[oaicite:6]{index=6}.
+
+###  Why It Matters
+
+These techniques represent a troubling evolution in phishing. They not only trip up many traditional scanners and email filters but also create a sense of legitimacy for recipients—making detection even more difficult.
+
+###  How to Stay Protected
+
+1. *Employ layered security*: Use a combination of AI-driven URL scanning, web filters, and behavioral analysis.
+2. *Train employees regularly*: Highlight new obfuscation tactics and encourage them to inspect links closely—even in familiar-looking emails.
+3. *Leverage advanced link inspection*: Consider tools that decode URLs and render them in a way that's visible to detection systems.
+4. *Monitor for anomalies*: Unusual link structures or unexpected use of @, %20, or Unicode symbols should raise red flags.
+
+Phishing isn't just technology—it's creativity. As attackers learn to disguise their links better, our defenses must go deeper than just surface-level clues.
+
+> Anikethan D Shetty: The more invisible the trick, the more pressing our awareness and tech must be to catch it.`,
+    author: "Anikethan D Shetty",
+    date: "2025-09-10",
+    readTime: "7 min read",
+    category: "Phishing",
+    tags: ["phishing", "cybercrime", "email security", "Tycoon PhaaS", "URL obfuscation"],
+    featured: true,
+    heroImage: "/phsing-3.jpg",
+    contentImages: [
+      {
+        url: "/tphising-lASDf.jpg",
+        alt: "Diagram showing Tycoon phishing URL obfuscation techniques",
+        caption: "Visual breakdown of Tycoon’s link-hiding tactics, including %20 spaces and Unicode dots.",
+      },
+      {
+        url: "/4ef0ef5f-8515-4fdc-9923-d20f8b988890.jpg",
+        alt: "Tips to defend against phishing obfuscation",
+        caption: "Key defensive strategies for spotting and interrupting obfuscated phishing links.",
+      },
+    ],
+  },
+   {
+    id: "reliance-power-rcom-fraud-clarification-2025",
+    title: "Reliance Power: Untouched by BoB’s Fraud Classification of RCom",
+    excerpt:
+      "Reliance Power asserts full independence from Reliance Communications after Bank of Baroda tagged RCom and Anil Ambani's loan accounts as fraud, emphasizing no operational or financial linkage.",
+    content: `On September 5, 2025, following Bank of Baroda's classification of the loan accounts of Reliance Communications (RCom) and Anil D. Ambani as “fraud”, *Reliance Power* issued a clear statement reaffirming its independence and continued stability.  
+
+###  Key Highlights:
+
+- *No Impact on Business*: Reliance Power stated that the Bank of Baroda action has no bearing on its business operations, financial performance, or stakeholders.
+- *Historical Context*: The fraudulent classification relates to events from over a decade ago. Anil Ambani has not served on the board of Reliance Power for more than 3.5 years.
+- *Distinct Entities*: Reliance Power emphasized that it is a distinct, independently listed company with no operational, financial, or legal link to RCom.
+- *RCom's Ongoing Resolution*: Reliance Communications remains under the control of a Committee of Creditors (CoC) led by SBI, managed by a Resolution Professional, and subject to NCLT and Supreme Court proceedings.
+- *Anil Ambani's Position*: Ambani, formerly a non-executive director of RCom, denies involvement in day-to-day operations and is pursuing legal recourse.
+
+---
+
+### Why It Matters
+
+For investors and stakeholders of Reliance Power, the clarification serves as a strong reassurance that its operations are untainted by RCom’s legal troubles.  
+
+> *Anikethan D Shetty:* Clear demarcation matters. Stakeholders deserve clarity—and Reliance Power delivered it.`,
+    author: "Anikethan D Shetty",
+    date: "2025-09-05",
+    readTime: "6 min read",
+    category: "Financial Fraud",
+    tags: ["Reliance Power", "RCom", "Anil Ambani", "Bank of Baroda", "Corporate Governance"],
+    featured: false,
+    heroImage: "/c36bc569-b11c-42da-bdaf-bc47ccaa9f51.jpg",
+    contentImages: [
+      {
+        url: "/b1b3e76a-bea8-4ae8-b65b-a88335cc320c.jpg",
+        alt: "Timeline showing Reliance Power and Reliance Communications corporate separation",
+        caption: "Reliance Power and RCom diverged years ago with separate boards and operations.",
+      },
+         {
+        url: "/8a59c209-50d7-4c8e-aeda-e8673ffa8c3b.jpg",
+        alt: "Timeline showing Reliance Power and Reliance Communications corporate separation",
+        caption: "Reliance Power and RCom diverged years ago with separate boards and operations.",
+      },
+    ],
+  },
+
+    {
+    id: "mostererat-clickfix-malware-2025",
+    title: "From MostereRAT to ClickFix: How Cybercriminals Blend Malware and Social Engineering",
+    excerpt:
+      "A new wave of threats combines advanced malware like MostereRAT with clever tricks like ClickFix, showing how attackers are merging tech evasion with human manipulation.",
+    content: `Cybersecurity researchers have highlighted two rising threats that reflect the changing face of cybercrime: *MostereRAT* and *ClickFix*. Both reveal how attackers are blurring the line between malware sophistication and social engineering.
+
+## MostereRAT: Phishing to Full Control
+A phishing campaign has been found distributing MostereRAT, a malware strain that evolves into a full remote-access trojan. Written using *Easy Programming Language (EPL)*, it employs staged payloads that help bypass antivirus detection.
+
+*Key features include:*
+- Running with *TrustedInstaller privileges* for deep system control  
+- Disabling defenses and blocking telemetry with Windows Filtering Platform (WFP)  
+- Deploying remote desktop tools like AnyDesk, TigerVNC, and TightVNC  
+- Capturing keystrokes, taking screenshots, and injecting code into svchost  
+- Creating hidden administrator accounts and executing remote DLLs  
+
+This makes MostereRAT both stealthy and persistent, turning compromised systems into fully monitored environments.
+
+## ClickFix: Social Engineering at Its Peak
+ClickFix is not traditional malware—it’s a *technique. Victims are tricked by fake “Fix it” or CAPTCHA prompts, which preload **malicious PowerShell commands* into their clipboard. Instructions then tell them to press:
+\Windows Key + R → Ctrl+V → Enter\
+
+Unknowingly, the victim executes malware themselves, bypassing automated security defenses.
+
+## Why These Threats Matter
+- *MostereRAT* shows how attackers use obfuscation and privilege escalation for stealth.  
+- *ClickFix* proves that even without malware, human error can be weaponized.  
+- Together, they reflect the *dual front of cybercrime*: advanced code and psychological manipulation.
+
+## Staying Protected
+1. *Educate users*: Awareness of fake prompts and suspicious instructions is critical.  
+2. *Strengthen endpoint security*: Behavioral monitoring helps detect unusual privilege escalation.  
+3. *Restrict PowerShell abuse*: Use policies to block unauthorized execution.  
+4. *Adopt zero-trust principles*: Assume compromise and validate continuously.  
+
+---
+
+> *Anikethan D Shetty:* Today’s cyber threats aren’t just about hacking systems—they’re about hacking people’s trust. Defense strategies must evolve for both.
+
+`,
+    author: "Anikethan D Shetty",
+    date: "2025-09-10",
+    readTime: "7 min read",
+    category: "Social Engineering",
+    tags: ["malware", "phishing", "MostereRAT", "ClickFix", "cybersecurity"],
+    featured: true,
+    heroImage: "/4cda9136-5683-446c-a103-12e64808c346.jpg",
+    contentImages: [
+      {
+        url: "/e438aab9-4406-42bb-bed2-b64a955c37ff.jpg",
+        alt: "Diagram showing how MostereRAT malware operates",
+        caption: "MostereRAT uses staged payloads and privilege escalation for persistence.",
+      },
+      {
+        url: "/6d1b846d-e77d-403a-8f49-8752b6b5d32d.jpg",
+        alt: "Illustration of ClickFix phishing trick",
+        caption: "ClickFix lures victims into executing malicious code themselves.",
+      },
+    ],
+  },
+   {
+    id: "ransomware-insurance-losses-spike-2025",
+    title: "Ransomware Costs Climb While Claims Drop: Resilience Insights",
+    excerpt:
+      "Despite a decline in ransomware insurance claims, Resilience reports a sharp rise in losses driven by AI-powered phishing, double-extortion, and policy theft.",
+    content: `Cyber insurance trends are revealing a troubling paradox: while ransomware claims are decreasing, losses are rising significantly. According to a report by cyber risk firm *Resilience*, several evolving tactics are contributing to costlier and more destructive attacks.
+
+## Fewer Claims, Higher Damage
+- In the *first half of 2025, ransomware incidents accounted for **76% of all incurred insurance losses—a substantial portion of the financial impact *:contentReference[oaicite:0]{index=0}**.  
+- Although fewer events triggered claims, the overall severity and cost of those that did have escalated dramatically.
+
+## What’s Fueling the Shift?
+Resilience identified several aggressive new tactics:
+- *AI-powered phishing*: Leveraging artificial intelligence, attackers craft more convincing and targeted phishing campaigns.  
+- *Double extortion*: Threat actors demand payment not only to decrypt data, but also to prevent its public release.  
+- *Insurance policy theft: Cybercriminals obtain policy details to better calibrate ransom demands, increasing leverage in attack negotiations *:contentReference[oaicite:1]{index=1}**.
+
+## The Bigger Picture: Ransom Growth vs. Recovery Costs
+- For retail targets, average ransom demands have surged to about *$2 million*—roughly double compared to the previous year.  
+- Interestingly, the *average recovery cost excluding ransom* has dropped 40% to *$1.65 million, marking the lowest level in three years—possibly reflecting better resilience and negotiation tactics by organizations *:contentReference[oaicite:2]{index=2}**.
+
+## Why This Matters
+- Even with fewer claims filed, each ransomware incident now carries far greater financial consequences.  
+- Insurers and organizations must recognize that *sophistication—not frequency—is now the core threat driver*.
+- Mitigation strategies need to address both technical resilience and awareness of emerging extortion tactics.
+
+> *Anikethan D Shetty:* The era of low-volume, high-impact ransomware is here. Our defenses must evolve accordingly—not just in volume, but in resilience and sophistication.
+
+`,
+    author: "Anikethan D Shetty",
+    date: "2025-09-10",
+    readTime: "7 min read",
+    category: "Ransomware",
+    tags: ["ransomware", "cyber insurance", "AI phishing", "double extortion", "resilience"],
+    featured: true,
+    heroImage: "/e5db78fb-c1e0-4e9b-bb9a-553c8a18dd25.jpg",
+    contentImages: [
+      {
+        url: "/9147dffa-e0cf-4913-b23d-482d74034c05.jpg",
+        alt: "Diagram illustrating double extortion in ransomware attacks",
+        caption: "Double extortion: attackers demand payment to decrypt data and to avoid publication.",
+      },
+      {
+        url: "/93f34bf0-6255-4459-9398-ae45b875a9cc.jpg",
+        alt: "Visualization of AI-powered phishing techniques",
+        caption: "AI-powered phishing is increasingly precise and destructive in ransomware chains.",
+      },
+    ],
+  },
+   {
+    id: "everyday-tech-spying-identity-2025",
+    title: "Your Smart Gadgets Are Spying on You—And Feeding Hackers Your Identity",
+    excerpt:
+      "From smart speakers to fitness trackers, everyday consumer tech can unintentionally expose sensitive data—especially when paired with default passwords, poor security, and AI-powered phishing.",
+    content: `The rise of the Internet of Things (IoT) has brought convenience, comfort, and personalization into our homes. From smart speakers to fitness trackers, these devices quietly collect massive amounts of data. But the very features that make our lives easier also make us vulnerable. Cybercriminals are exploiting these gadgets as gateways to steal identities and launch sophisticated attacks.
+
+## Everyday Devices, Extraordinary Risks
+
+### Smart speakers and home hubs
+Your Alexa or Google Home doesn’t just respond to voice commands—it listens for them. Hackers can hijack these always-on microphones to capture sensitive conversations. Even routine voice data, when combined with other leaks, can expose banking details, schedules, or travel plans.
+
+### Fitness trackers and wearables
+Wearables monitor sleep, movement, and health metrics. Attackers can misuse this data to infer when you’re away from home, your physical vulnerabilities, or even your location patterns. In the wrong hands, such insights become tools for fraud or stalking.
+
+### Smartphones: the ultimate spy device
+Our phones connect every part of our digital identity—banking apps, emails, social accounts. Malware or poorly secured apps can siphon data in the background, often without users noticing until damage is done.
+
+## The Criminal Playbook: How Hackers Exploit IoT
+
+- *Default passwords*: Many IoT devices ship with weak or universal passwords, making them easy to brute force.  
+- *Cloud vulnerabilities*: Gadgets often send their data to remote servers. A breach in those servers can expose millions of users at once.  
+- *AI-powered phishing*: Attackers use stolen data to craft hyper-personalized phishing messages. Imagine receiving an email referencing last night’s sleep cycle from your fitness tracker—it feels too real to dismiss.  
+- *Policy theft and blackmail*: Hackers don’t just want to steal information; they monetize it. Ransoms are demanded with proof of stolen private recordings or logs.
+
+## Real-Life Examples of Gadget Spying
+
+- *Baby monitors hacked*: Families reported strangers speaking through baby monitors after devices were compromised.  
+- *Car infotainment systems*: Modern cars store call logs, contacts, and locations. When sold second-hand without resets, buyers gained access to sensitive data of previous owners.  
+- *Smart TVs*: Security researchers have shown how hackers can use built-in cameras and microphones to spy on unsuspecting households.
+
+## How to Take Back Control
+
+1. *Change default passwords*: Unique, strong passwords are your first line of defense.  
+2. *Enable two-factor authentication (2FA)*: Secure your accounts beyond a single password.  
+3. *Segment your network*: Put IoT devices on a guest or separate Wi-Fi network to contain damage if one is compromised.  
+4. *Update firmware regularly*: Manufacturers release patches, but only if you install them.  
+5. *Review permissions*: Many apps and devices request excessive data access. Revoke what’s unnecessary.  
+
+## Looking Ahead: Smarter Devices, Smarter Attacks
+As devices grow more intelligent, attackers evolve too. AI enables hackers to generate convincing deepfake voices, intercept two-factor codes, and craft phishing emails indistinguishable from legitimate communication. The future of cybercrime will be less about brute force and more about manipulating trust.
+
+> *Anikethan D Shetty:* Convenience shouldn’t come at the cost of your privacy. Our connected devices are here to stay, but so is the responsibility to secure them. Awareness, vigilance, and smarter digital habits are the shields we must carry into this new era.
+
+`,
+    author: "Anikethan D Shetty",
+    date: "2025-09-08",
+    readTime: "7 min read",
+    category: "Identity Theft",
+    tags: ["IoT privacy", "smart home security", "identity theft", "AI phishing", "cyber awareness"],
+    featured: true,
+    heroImage: "/53f872f8-0196-40c1-b716-e42f5f436417.jpg",
+    contentImages: [
+      {
+        url: "/5fd20ace-cce4-41bb-bfb9-819b19dc006e.jpg",
+        alt: "Connections between smart home devices and hackers",
+        caption: "Smart devices can serve as gateways for hackers into your personal data.",
+      },
+      {
+        url: "/552ded29-c510-4fec-9296-0d7295e1a581.jpg",
+        alt: "AI-crafted phishing messages using user data",
+        caption: "AI-powered phishing attacks exploit the personal data smart gadgets leak.",
+      },
+      // {
+      //   url: "/iot-network-segmentation.jpg",
+      //   alt: "Diagram of segmented Wi-Fi network for IoT security",
+      //   caption: "Keeping IoT devices on separate networks limits the blast radius of breaches.",
+      // },
+    ],
+  },
+
 
 ]
 
