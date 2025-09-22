@@ -17,7 +17,7 @@ import ContactPage from "./contact/page";
 export default function Home() {
   return (
     <>
-      <div className="mb-30 flex flex-col justify-center" id="hero">
+      <div className="mb-30 flex flex-col justify-center text" id="hero">
         <Hero />
       </div>
       <div>
