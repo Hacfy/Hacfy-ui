@@ -158,26 +158,32 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        {/* Google Analytics */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-PE1HH1GCZZ"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-PE1HH1GCZZ');
-            `,
-          }}
-        />
-        <link rel="icon" href="/images/hacfy.webp" />
-      </head>
+ <head>
+  {/* Google Analytics */}
+  <Script
+    strategy="afterInteractive"
+    src="https://www.googletagmanager.com/gtag/js?id=G-PE1HH1GCZZ"
+  />
+  <Script
+    id="google-analytics"
+    strategy="afterInteractive"
+    dangerouslySetInnerHTML={{
+      __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-PE1HH1GCZZ');
+      `,
+    }}
+   />
+
+  {/* Favicon */}
+  <link rel="icon" href="/images/hacfy.webp" />
+
+  {/* ✅ Add Google Site Verification meta tag here */}
+  <meta name="google-site-verification" content="google2aa69c95e6f05aaf" />
+</head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased bg-primary scroll-smooth`}
       >
