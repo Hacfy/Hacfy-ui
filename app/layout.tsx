@@ -246,7 +246,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   robots: { index: true, follow: true },
-  keywords:[
+  keywords: [
     "Cybersecurity Services",
     "Penetration Testing",
     "DFIR",
@@ -298,11 +298,9 @@ export const metadata: Metadata = {
     "PCI DSS compliance consultant India",
     "vCISO services in Bangalore",
     "vCISO services in Mumbai",
-    "vCISO services in Delhi"
-  ]
-  
+    "vCISO services in Delhi",
+  ],
 }
-
 
 export default function RootLayout({
   children,
@@ -314,8 +312,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Hacfy",
     url: "https://hacfy.com",
-     "logo": "https://hacfy.com/logo-hd.png",
-
+    logo: "https://hacfy.com/logo-hd.png",
     sameAs: [
       "https://www.linkedin.com/company/hacfy",
       "https://x.com/hacfy",
@@ -344,23 +341,75 @@ export default function RootLayout({
         name: "About",
         url: "https://hacfy.com/about",
       },
-      // {
-      //   "@type": "SiteNavigationElement",
-      //   position: 2,
-      //   name: "Trainings",
-      //   url: "https://hacfy.com/trainings",
-      // },
+      {
+        "@type": "SiteNavigationElement",
+        position: 2,
+        name: "Trainings",
+        url: "https://hacfy.com/trainings",
+      },
       {
         "@type": "SiteNavigationElement",
         position: 3,
+        name: "Services",
+        url: "https://hacfy.com/services",
+      },
+      {
+        "@type": "SiteNavigationElement",
+        position: 4,
         name: "Join Us",
         url: "https://hacfy.com/join-us",
       },
       {
         "@type": "SiteNavigationElement",
-        position: 4,
+        position: 5,
         name: "Contact",
         url: "https://hacfy.com/contact",
+      },
+    ],
+  }
+
+  const jsonLdServices = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Hacfy Cybersecurity Services",
+    itemListOrder: "Ascending",
+    numberOfItems: 6,
+    itemListElement: [
+      {
+        "@type": "Service",
+        position: 1,
+        name: "Penetration Testing",
+        url: "https://hacfy.com/services/penetration-testing",
+      },
+      {
+        "@type": "Service",
+        position: 2,
+        name: "DFIR (Digital Forensics & Incident Response)",
+        url: "https://hacfy.com/services/dfir",
+      },
+      {
+        "@type": "Service",
+        position: 3,
+        name: "vCISO (Virtual Chief Information Security Officer)",
+        url: "https://hacfy.com/services/vciso",
+      },
+      {
+        "@type": "Service",
+        position: 4,
+        name: "vDPO (Virtual Data Protection Officer)",
+        url: "https://hacfy.com/services/vdpo",
+      },
+      {
+        "@type": "Service",
+        position: 5,
+        name: "PCI DSS Compliance",
+        url: "https://hacfy.com/services/pci-dss",
+      },
+      {
+        "@type": "Service",
+        position: 6,
+        name: "View All Services",
+        url: "https://hacfy.com/services",
       },
     ],
   }
@@ -397,21 +446,14 @@ export default function RootLayout({
         </div>
 
         {/* JSON-LD Schema for SEO */}
-        <Script
-          id="org"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }}
-        />
-        <Script
-          id="website"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
-        />
-        <Script
-          id="sitenav"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdNav) }}
-        />
+        <Script id="org" type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }} />
+        <Script id="website" type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }} />
+        <Script id="sitenav" type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdNav) }} />
+        <Script id="services" type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdServices) }} />
       </body>
     </html>
   )
