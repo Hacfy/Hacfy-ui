@@ -63,7 +63,7 @@ export default function VAPTPage() {
             </p>
           </div>
         </div>
-      </section>
+      </section>``
 
       {/* Services Grid */}
       <section className="py-20">
