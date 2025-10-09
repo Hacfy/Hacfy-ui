@@ -105,7 +105,7 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Hacfy",
     url: "https://hacfy.com",
-   "logo": "https://hacfy.com/logo-hd.png",
+     "logo": "https://hacfy.com/logo-hd.png",
 
     sameAs: [
       "https://www.linkedin.com/company/hacfy",

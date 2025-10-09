@@ -112,14 +112,14 @@ export default function BlogPostPage() {
                       day: "numeric",
                     })}
                   </div>
-                  <div className="flex items-center text-muted-foreground text-sm">
+                  {/* <div className="flex items-center text-muted-foreground text-sm">
                     <Clock className="w-4 h-4 mr-1" />
                     {post.readTime}
                   </div>
                   <div className="flex items-center text-muted-foreground text-sm">
                     <User className="w-4 h-4 mr-1" />
                     {post.author}
-                  </div>
+                  </div> */}
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-black gradient-text leading-tight mb-4">
@@ -138,14 +138,14 @@ export default function BlogPostPage() {
                     day: "numeric",
                   })}
                 </div>
-                <div className="flex items-center text-muted-foreground text-sm">
+                {/* <div className="flex items-center text-muted-foreground text-sm">
                   <Clock className="w-4 h-4 mr-1" />
                   {post.readTime}
                 </div>
                 <div className="flex items-center text-muted-foreground text-sm">
                   <User className="w-4 h-4 mr-1" />
                   {post.author}
-                </div>
+                </div> */}
               </div>
             )}
 

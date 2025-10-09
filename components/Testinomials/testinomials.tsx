@@ -13,12 +13,12 @@ interface Testimonial {
 }
 
 const testimonials: Testimonial[] = [
-  {
-    text: "HacFy's cybersecurity training has been highly valuable for our students at Sri Medha College. The practical, industry-focused sessions helped them develop essential skills to tackle real-world security challenges. We appreciate HacFy's dedication to quality cybersecurity education.",
-    name: "Ram kiran",
-    role: "Founder of Shree Medha College",
-    image: "./sriram.jpeg",
-  },
+  // {
+  //   text: "HacFy's cybersecurity training has been highly valuable for our students at Sri Medha College. The practical, industry-focused sessions helped them develop essential skills to tackle real-world security challenges. We appreciate HacFy's dedication to quality cybersecurity education.",
+  //   name: "Ram kiran",
+  //   role: "Founder of Shree Medha College",
+  //   image: "./sriram.jpeg",
+  // },
   {
     text: "Partnering with HacFy for Vulnerability Assessment and Penetration Testing has greatly enhanced our cybersecurity framework. Their thorough and methodical approach uncovered hidden security gaps that could have been exploited. The team demonstrated exceptional technical expertise and provided detailed, easy-to-understand reports along with actionable remediation steps. Their quick support and strategic guidance allowed us to secure our systems efficiently and effectively.",
     name: "Niels Hoekman",
@@ -31,12 +31,12 @@ const testimonials: Testimonial[] = [
     role: "Marketing Head & Company Relationship Manager at Vithsutra Technologies",
     image: "./Kiran kashyap.jpeg",
   },
-  {
-    text: "HacFy's 5-day cybersecurity bootcamp for Jain College was highly effective and well-organized. The training provided practical, industry-relevant knowledge, giving our students valuable hands-on experience in identifying and mitigating security threats. We appreciate HacFy's professionalism and commitment to quality education.",
-    name: "Mallikarjun Kulloli",
-    role: "Managing Director of JIEF, Belgavi",
-    image: "/images/malli.jpg",
-  },
+  // {
+  //   text: "HacFy's 5-day cybersecurity bootcamp for Jain College was highly effective and well-organized. The training provided practical, industry-relevant knowledge, giving our students valuable hands-on experience in identifying and mitigating security threats. We appreciate HacFy's professionalism and commitment to quality education.",
+  //   name: "Mallikarjun Kulloli",
+  //   role: "Managing Director of JIEF, Belgavi",
+  //   image: "/images/malli.jpg",
+  // },
 ]
 
 export default function TestimonialSection() {

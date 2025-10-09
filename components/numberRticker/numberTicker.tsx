@@ -5,8 +5,8 @@ export function StatsSection() {
   return (
     <div className=" flex flex-col md:flex-row justify-center gap-x-12 p-10 text-gray-700">
       <StatItem value={15} label="Team Experts" />
-      <StatItem value={10} label="Students Trained" />
-      <StatItem value={100} label="Clients Served" />
+      <StatItem value={53} label="Vulnerabilities Found" />
+      <StatItem value={10} label="Clients Served" />
     </div>
   );
 }

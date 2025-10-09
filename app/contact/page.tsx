@@ -19,7 +19,7 @@ const [formData, setFormData] = useState({
   company: "",
   subject: "",
   message: "",
-  category: "", // Training or Services
+  category: "Services", // Training or Services
   option: "",   // Selected dropdown option
 })
 
@@ -208,11 +208,11 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Category Selection */}
                     <div className="space-y-4">
-                      <label className="block text-sm font-medium text-foreground mb-2">
+                      {/* <label className="block text-sm font-medium text-foreground mb-2">
                         What are you interested in? *
-                      </label>
+                      </label> */}
                       <div className="flex space-x-6">
-                        <label className="flex items-center space-x-2">
+                        {/* <label className="flex items-center space-x-2">
                           <input
                             type="radio"
                             name="category"
@@ -222,8 +222,8 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                             className="accent-secondary"
                           />
                           <span>Training</span>
-                        </label>
-                        <label className="flex items-center space-x-2">
+                        </label> */}
+                        {/* <label className="flex items-center space-x-2">
                           <input
                             type="radio"
                             name="category"
@@ -233,7 +233,7 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                             className="accent-secondary"
                           />
                           <span>Services</span>
-                        </label>
+                        </label> */}
                       </div>
                       {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
                     </div>

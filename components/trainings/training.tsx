@@ -26,14 +26,14 @@ export default function CloudSecuritySolutions() {
       highlight: false,
       route:"services/digital-forensics"
     },
-    {
-      id: "04",
-      title: "HacFy Trainings",
-      description:
-        "Empower individuals through hands-on training to identify vulnerabilities, understand misconfigurations, and recognize deviations from cybersecurity best practices across real-world scenarios",
-      highlight: false,
-      route:"training#workshops"
-    },
+    // {
+    //   id: "04",
+    //   title: "HacFy Trainings",
+    //   description:
+    //     "Empower individuals through hands-on training to identify vulnerabilities, understand misconfigurations, and recognize deviations from cybersecurity best practices across real-world scenarios",
+    //   highlight: false,
+    //   route:"training#workshops"
+    // },
   ];
 
   return (

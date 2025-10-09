@@ -135,14 +135,14 @@ export default function BlogsPage() {
                     </CardHeader>
                     <CardContent>
                       <CardDescription className="text-base leading-relaxed mb-4">{post.excerpt}</CardDescription>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center text-sm text-muted-foreground">
+                      <div className="flex fle items-center justify-between">
+                        {/* <div className="flex items-center text-sm text-muted-foreground">
                           <User className="w-4 h-4 mr-1" />
                           <span className="mr-4">{post.author}</span>
                           <Clock className="w-4 h-4 mr-1" />
                           <span>{post.readTime}</span>
-                        </div>
-                        <ArrowRight className="w-5 h-5 text-secondary group-hover:translate-x-1 transition-transform duration-300" />
+                        </div> */}
+                        {/* <ArrowRight className="w-5 h-5 text-secondary group-hover:translate-x-1 transition-transform duration-300" /> */}
                       </div>
                     </CardContent>
                   </Card>
@@ -199,7 +199,7 @@ export default function BlogsPage() {
                           </Badge>
                         ))}
                       </div>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      {/* <div className="flex items-center justify-between text-xs text-muted-foreground">
                         <div className="flex items-center">
                           <User className="w-3 h-3 mr-1" />
                           <span className="mr-3">{post.author}</span>
@@ -210,7 +210,7 @@ export default function BlogsPage() {
                           <Calendar className="w-3 h-3 mr-1" />
                           {new Date(post.date).toLocaleDateString()}
                         </div>
-                      </div>
+                      </div> */}
                     </CardContent>
                   </Card>
                 </Link>
