@@ -344,12 +344,12 @@ export default function RootLayout({
         name: "About",
         url: "https://hacfy.com/about",
       },
-      {
-        "@type": "SiteNavigationElement",
-        position: 2,
-        name: "Trainings",
-        url: "https://hacfy.com/trainings",
-      },
+      // {
+      //   "@type": "SiteNavigationElement",
+      //   position: 2,
+      //   name: "Trainings",
+      //   url: "https://hacfy.com/trainings",
+      // },
       {
         "@type": "SiteNavigationElement",
         position: 3,
