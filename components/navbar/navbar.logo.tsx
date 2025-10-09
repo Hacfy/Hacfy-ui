@@ -228,6 +228,7 @@ export function Navbarlogo() {
                         {service.description}
                       </p>
                     </div>
+                    {/* console.log("") */}
                   </div>
                 </Link>
               )
