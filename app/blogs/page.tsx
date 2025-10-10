@@ -6,17 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {
-  Shield,
   AlertTriangle,
   Search,
   Calendar,
-  Clock,
-  User,
-  ArrowRight,
-  TrendingUp,
-  Lock,
-  Eye,
-  Zap,
 } from "lucide-react"
 import { blogPosts } from "@/lib/blog-data"
 

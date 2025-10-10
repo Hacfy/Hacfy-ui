@@ -18,11 +18,8 @@ import {
   FileCheck,
   AlertTriangle,
   Search,
-  Zap,
   Lock,
   Eye,
-  Target,
-  BookOpen,
   Menu,
 } from "lucide-react"
 
@@ -60,14 +57,7 @@ export function Navbarlogo() {
         { name: "Malware Analysis", icon: Lock, description: "Malware analysis and reverse engineering" },
       ],
     },
-    Trainings: {
-      services: [
-        { name: "Workshops", icon: Target, description: "Short, intensive sessions on specific cybersecurity topics" },
-        { name: "Bootcamps", icon: Zap, description: "Immersive, multi-week programs for deep skill-building" },
-        { name: "Internships", icon: Users, description: "Work on real security projects with industry guidance" },
-        { name: "Corporate", icon: BookOpen, description: "Tailored programs for enterprise security teams" },
-      ],
-    },
+   
   }
 
   useEffect(() => {
@@ -139,10 +129,10 @@ export function Navbarlogo() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex space-x-8 items-center relative">
-          <Link href="/" className="text-lg font-medium text-gray-700 hover:text-red-600">
+          <Link href="/" className="text-lg font-medium text-gray-700 hover:text-red-600"  onMouseEnter={() => setServicesOpen(false)}>
             Home
           </Link>
-          <Link href="/about" className="text-lg font-medium text-gray-700 hover:text-red-600">
+          <Link href="/about" className="text-lg font-medium text-gray-700 hover:text-red-600"  onMouseEnter={() => setServicesOpen(false)}>
             About
           </Link>
         <div className="relative">
@@ -170,8 +160,8 @@ export function Navbarlogo() {
         boxShadow:
           "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)",
       }}
-      onMouseEnter={() => setServicesOpen(true)}  // keep open on hover
-      onMouseLeave={() => setServicesOpen(false)} // close when leaving dropdown
+      onMouseEnter={() => setServicesOpen(true)} 
+      onMouseLeave={() => setServicesOpen(false)} 
     >
       <div className="grid grid-cols-5 gap-8">
         {/* Left: Categories */}
@@ -228,7 +218,7 @@ export function Navbarlogo() {
                         {service.description}
                       </p>
                     </div>
-                    {/* console.log("") */}
+               
                   </div>
                 </Link>
               )
@@ -240,13 +230,13 @@ export function Navbarlogo() {
   )}
 </div>
 
-          <Link href="/blogs" className="text-lg font-medium text-gray-700 hover:text-red-600">
+          <Link href="/blogs" className="text-lg font-medium text-gray-700 hover:text-red-600"  onMouseEnter={() => setServicesOpen(false)}>
             Blogs
           </Link>
-          <Link href="/contact" className="text-lg font-medium text-gray-700 hover:text-red-600">
+          <Link href="/contact" className="text-lg font-medium text-gray-700 hover:text-red-600"  onMouseEnter={() => setServicesOpen(false)}>
             Contact
           </Link>
-          <Link href="/careers" className="text-lg font-medium text-gray-700 hover:text-red-600">
+          <Link href="/careers" className="text-lg font-medium text-gray-700 hover:text-red-600"  onMouseEnter={() => setServicesOpen(false)}>
             Careers
           </Link>
         </div>

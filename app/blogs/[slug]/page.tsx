@@ -15,7 +15,6 @@ import {
   Clock,
   User,
   BookOpen,
-  Shield,
   ChevronRight,
   Twitter,
   Facebook,
