@@ -233,12 +233,12 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hacfy.com"),
-  title: "Hacfy — A future secured",
+  title: "Hacfy A future secured",
   description:
     "Hacfy delivers cybersecurity training, assessments and solutions. A future secured.",
   alternates: { canonical: "https://hacfy.com/" },
   openGraph: {
-    title: "Hacfy — A future secured",
+    title: "HacfyA future secured",
     description: "Cybersecurity training, assessments and solutions",
     url: "https://hacfy.com",
     siteName: "Hacfy",
@@ -417,7 +417,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics */}
+
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-PE1HH1GCZZ"
@@ -445,7 +445,6 @@ export default function RootLayout({
           <FooterDemo />
         </div>
 
-        {/* JSON-LD Schema for SEO */}
         <Script id="org" type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrg) }} />
         <Script id="website" type="application/ld+json"
