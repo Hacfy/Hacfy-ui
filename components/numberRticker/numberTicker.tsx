@@ -13,7 +13,7 @@ export function StatsSection() {
 
 function StatItem({ value, label }: { value: number; label: string }) {
   return (
-    <div className="h-full flex flex-row mb-10 justify-between items-center text-center">
+    <div className="h-50% flex flex-row mb-10 justify-between items-center text-center">
     <Image src={`/${label}.png`} alt="Logo" width={100} height={120} className="md:w-[200px]"/>
       <div className="flex items-center justify-center">
        

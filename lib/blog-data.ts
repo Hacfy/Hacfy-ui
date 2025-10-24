@@ -17,7 +17,6 @@ export interface BlogPost {
   }[];
 }
 
-// Enhanced blog data with images and new phishing content
 export const blogPosts: BlogPost[] = [
   {
     id: "phishing-evolution-2024",
@@ -376,7 +375,7 @@ References
         caption: "Key steps enterprises can take to reduce malware risks",
       },
     ],
-  },  
+  },
   {
     id: "phantomcard-nfc-fraud-2025",
     title:
@@ -640,7 +639,8 @@ Seizing their profits cuts off the fuel that powers ransomware operations, makin
   },
   {
     id: "identity-theft-data-breaches-h1-2025",
-    title: "Identity Theft: ITRC Reports Accelerating Data Breach Trends in H1 2025",
+    title:
+      "Identity Theft: ITRC Reports Accelerating Data Breach Trends in H1 2025",
     excerpt:
       "The Identity Theft Resource Center (ITRC) reports a surge in U.S. data breaches in the first half of 2025, with financial services and healthcare most targeted. Learn how supply chain vulnerabilities, recycled credentials, and opaque breach reporting are shaping the evolving landscape of identity theft.",
     content: `The Identity Theft Resource Center® (ITRC) released its H1 2025 Data Breach Report, revealing 1,732 U.S. data compromises—putting the year on pace to break records. Cyberattacks remain the leading cause, particularly in financial services and healthcare, while supply chain breaches and recycled credential abuse amplify the risk.
@@ -779,10 +779,11 @@ Seizing their profits cuts off the fuel that powers ransomware operations, makin
       {
         url: "/images/Identity-Theft.jpg",
         alt: "Identity theft risks and victims",
-        caption: "Identity theft is accelerating due to cyberattacks and data leaks.",
+        caption:
+          "Identity theft is accelerating due to cyberattacks and data leaks.",
       },
     ],
-  },  
+  },
   {
     id: "ai-powered-phishing-threats-kaspersky-2025",
     title:
@@ -1089,7 +1090,8 @@ Ransomware is no longer a random attack but a highly organized, profit-driven in
   },
   {
     id: "identity-theft-synthetic-identities-2025",
-    title: "Identity Theft in 2025 — Data Breaches and Synthetic Identities on the Rise",
+    title:
+      "Identity Theft in 2025 — Data Breaches and Synthetic Identities on the Rise",
     excerpt:
       "Identity theft is accelerating in 2025, fueled by large-scale data breaches and AI-driven synthetic identity fraud. Learn how stolen personal data is exploited, the risks for individuals and organizations, and practical strategies for prevention and protection.",
     content: `The Identity Theft Resource Center (ITRC) and other cybersecurity organizations report that identity theft is reaching unprecedented levels in 2025. A combination of massive data breaches, credential recycling, and AI-generated synthetic identities is driving a surge in both financial and personal harm.
@@ -1218,23 +1220,25 @@ Ransomware is no longer a random attack but a highly organized, profit-driven in
       {
         url: "/images/SyntheticIdentityFraudWP-opengraph-1200x627.jpg",
         alt: "AI synthetic identity fraud",
-        caption: "AI-generated synthetic identities are driving new fraud schemes.",
+        caption:
+          "AI-generated synthetic identities are driving new fraud schemes.",
       },
       {
         url: "/images/Identity-Theft.jpg",
         alt: "Victims of identity theft 2025",
-        caption: "Victims face emotional and financial challenges from identity crimes.",
+        caption:
+          "Victims face emotional and financial challenges from identity crimes.",
       },
     ],
-  },  
- {
-  id: "tycoon-phishing-obfuscation-techniques-2025",
-  title: "Tycoon’s Deceptive Links: How Phishers Obscure URLs in 2025",
-  // subtitle:"Cybercriminals behind the Tycoon phishing-as-a-service (PhaaS) kit are using sophisticated URL obfuscation techniques to bypass detection and trick users. Learn how invisible spaces, fake characters, and clever URL manipulation are reshaping phishing in 2025—and how to stay protected.",
-  // seoFilename: "tycoon-phishing-url-obfuscation-hacfy.jpg",
-  excerpt:
-    "Phishing attackers are using deceptive URL structures and invisible characters to bypass defenses. The Tycoon PhaaS kit automates these tricks—making phishing harder to detect in 2025.",
-  content: `
+  },
+  {
+    id: "tycoon-phishing-obfuscation-techniques-2025",
+    title: "Tycoon’s Deceptive Links: How Phishers Obscure URLs in 2025",
+    // subtitle:"Cybercriminals behind the Tycoon phishing-as-a-service (PhaaS) kit are using sophisticated URL obfuscation techniques to bypass detection and trick users. Learn how invisible spaces, fake characters, and clever URL manipulation are reshaping phishing in 2025—and how to stay protected.",
+    // seoFilename: "tycoon-phishing-url-obfuscation-hacfy.jpg",
+    excerpt:
+      "Phishing attackers are using deceptive URL structures and invisible characters to bypass defenses. The Tycoon PhaaS kit automates these tricks—making phishing harder to detect in 2025.",
+    content: `
 ### Executive Summary
 Phishing attacks have always relied on deception, but attackers are now manipulating URLs with unprecedented creativity. The Tycoon PhaaS platform is leading this evolution, using advanced obfuscation techniques to hide malicious links inside emails and evade both human scrutiny and automated scanners. Techniques like inserting invisible characters, mixing hyperlink structures, and using fake branding make these phishing emails appear legitimate while slipping past defenses. Security teams must adopt layered protection strategies, deeper URL inspection, and continuous employee training to counter these evolving threats.
 
@@ -1326,35 +1330,35 @@ Include author name, title, and professional/social links.
 - HacFy Cybersecurity Research
 - Industry reports on phishing and PhaaS evolution
   `,
-  author: "Anikethan D Shetty",
-  date: "2025-09-10",
-  readTime: "7 min read",
-  category: "Phishing",
-  tags: [
-    "phishing",
-    "cybercrime",
-    "email security",
-    "Tycoon PhaaS",
-    "URL obfuscation",
-    "cybersecurity",
-  ],
-  featured: true,
-  heroImage: "/phsing-3.jpg",
-  contentImages: [
-    {
-      url: "/tphising-lASDf.jpg",
-      alt: "Diagram showing Tycoon phishing URL obfuscation techniques",
-      caption:
-        "Visual breakdown of Tycoon’s link-hiding tactics, including %20 spaces and Unicode dots.",
-    },
-    {
-      url: "/4ef0ef5f-8515-4fdc-9923-d20f8b988890.jpg",
-      alt: "Tips to defend against phishing obfuscation",
-      caption:
-        "Key defensive strategies for spotting and interrupting obfuscated phishing links.",
-    },
-  ],
-},
+    author: "Anikethan D Shetty",
+    date: "2025-09-10",
+    readTime: "7 min read",
+    category: "Phishing",
+    tags: [
+      "phishing",
+      "cybercrime",
+      "email security",
+      "Tycoon PhaaS",
+      "URL obfuscation",
+      "cybersecurity",
+    ],
+    featured: true,
+    heroImage: "/phsing-3.jpg",
+    contentImages: [
+      {
+        url: "/tphising-lASDf.jpg",
+        alt: "Diagram showing Tycoon phishing URL obfuscation techniques",
+        caption:
+          "Visual breakdown of Tycoon’s link-hiding tactics, including %20 spaces and Unicode dots.",
+      },
+      {
+        url: "/4ef0ef5f-8515-4fdc-9923-d20f8b988890.jpg",
+        alt: "Tips to defend against phishing obfuscation",
+        caption:
+          "Key defensive strategies for spotting and interrupting obfuscated phishing links.",
+      },
+    ],
+  },
   {
     id: "reliance-power-rcom-fraud-clarification-2025",
     title: "Reliance Power: Untouched by BoB’s Fraud Classification of RCom",
@@ -1537,7 +1541,7 @@ For investors and stakeholders of Reliance Power, the clarification serves as a 
           "ClickFix lures victims into executing malicious code themselves.",
       },
     ],
-  },  
+  },
   {
     id: "ransomware-insurance-losses-spike-2025",
     title: "Ransomware Costs Climb While Claims Drop – Resilience Insights",
@@ -1629,7 +1633,7 @@ For investors and stakeholders of Reliance Power, the clarification serves as a 
       "cyber insurance",
       "policy theft",
       "Resilience report",
-      "cybersecurity trends"
+      "cybersecurity trends",
     ],
     featured: true,
     heroImage: "/e5db78fb-c1e0-4e9b-bb9a-553c8a18dd25.jpg",
@@ -1637,15 +1641,17 @@ For investors and stakeholders of Reliance Power, the clarification serves as a 
       {
         url: "/9147dffa-e0cf-4913-b23d-482d74034c05.jpg",
         alt: "Diagram illustrating double extortion in ransomware attacks",
-        caption: "Double extortion: attackers demand payment to decrypt data and to avoid publication."
+        caption:
+          "Double extortion: attackers demand payment to decrypt data and to avoid publication.",
       },
       {
         url: "/93f34bf0-6255-4459-9398-ae45b875a9cc.jpg",
         alt: "Visualization of AI-powered phishing techniques",
-        caption: "AI-powered phishing is increasingly precise and destructive in ransomware chains."
-      }
-    ]
-  },  
+        caption:
+          "AI-powered phishing is increasingly precise and destructive in ransomware chains.",
+      },
+    ],
+  },
   {
     id: "everyday-tech-spying-identity-2025",
     title:

@@ -10,7 +10,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import emailjs from "emailjs-com"
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react"
 import Turnstile from "react-turnstile" 
-
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 export default function ContactPage() {
 const [formData, setFormData] = useState({
   name: "",
@@ -26,7 +27,7 @@ const [formData, setFormData] = useState({
 // Radio + Dropdown Options
 const trainingOptions = ["Bootcamps", "Workshops", "Certifications", "Corporate Training"]
 const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Response", "Compliance Audits"]
-
+const [phone, setPhone] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -238,7 +239,7 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                       {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
                     </div>
 
-                    {/* Dropdown */}
+                 
                     {formData.category && (
                       <div className="mt-4">
                         <label htmlFor="option" className="block text-sm font-medium text-foreground mb-2">
@@ -278,7 +279,7 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                           value={formData.name}
                           onChange={handleInputChange}
                           className={`${errors.name ? "border-red-500" : ""}`}
-                          placeholder="John Doe"
+                          placeholder="Enter your Full Name"
                         />
                         {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                       </div>
@@ -294,28 +295,26 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                           value={formData.email}
                           onChange={handleInputChange}
                           className={`${errors.email ? "border-red-500" : ""}`}
-                          placeholder="john@example.com"
+                          placeholder="Enter your Email"
                         />
                         {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                       </div>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                          Phone Number *
-                        </label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className={`${errors.phone ? "border-red-500" : ""}`}
-                          placeholder="+1 (555) 123-4567"
-                        />
-                        {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
-                      </div>
+                       <div>
+                       <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                         Phone Number *
+                          </label>
+        <PhoneInput
+          country="in"
+          value={phone}
+          onChange={setPhone}
+          placeholder="Enter your Phone number"
+          inputClass="!w-full !p-2 border-gary-10 !pl-10"
+         
+        />
+      </div>
 
                       <div>
                         <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
@@ -364,7 +363,7 @@ const serviceOptions = ["Penetration Testing", "Cloud Security", "Incident Respo
                       {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                     </div>
 
-                    {/* ✅ Cloudflare Turnstile CAPTCHA */}
+                    
                     <Turnstile
                       sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
                       onVerify={(token) => setCaptchaToken(token)}
