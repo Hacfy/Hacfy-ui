@@ -230,9 +230,9 @@ export function Navbarlogo() {
   )}
 </div>
 
-          <Link href="/blogs" className="text-lg font-medium text-gray-700 hover:text-red-600"  onMouseEnter={() => setServicesOpen(false)}>
+          {/* <Link href="/blogs" className="text-lg font-medium text-gray-700 hover:text-red-600"  onMouseEnter={() => setServicesOpen(false)}>
             Blogs
-          </Link>
+          </Link> */}
           <Link href="/contact" className="text-lg font-medium text-gray-700 hover:text-red-600"  onMouseEnter={() => setServicesOpen(false)}>
             Contact
           </Link>
@@ -353,13 +353,13 @@ export function Navbarlogo() {
                 )}
               </div>
 
-              <Link
+              {/* <Link
                 href="/blogs"
                 className="flex items-center px-4 py-3 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 font-medium"
                 onClick={closeMobileMenu}
               >
                 Blogs
-              </Link>
+              </Link> */}
 
               <Link
                 href="/contact"

@@ -1,201 +1,62 @@
 "use client"
 
-import { CheckCircle, Building2, Users, Target, Award, Sparkles } from "lucide-react"
-
-import type React from "react"
-import { useState, useEffect } from "react"
+import { Building2, Users, Target, Award, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import emailjs from "@emailjs/browser"
-import { useRouter, useSearchParams } from "next/navigation"
-import Turnstile from "react-turnstile"
+import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link"
+
+const AVAILABLE_ROLES = [
+  {
+    id: "web-developer",
+    title: "Web Developer",
+    description: "Build responsive and scalable web applications using modern technologies.",
+    icon: "code",
+  },
+  {
+    id: "vapt-analyst",
+    title: "VAPT Analyst",
+    description: "Conduct vulnerability assessments and penetration testing to secure systems.",
+    icon: "shield",
+  },
+  {
+    id: "cybersecurity-trainer",
+    title: "Cybersecurity Trainer",
+    description: "Educate and train professionals on cybersecurity best practices and techniques.",
+    icon: "book",
+  },
+  {
+    id: "project-manager",
+    title: "Project Manager",
+    description: "Lead and manage projects from conception to successful delivery.",
+    icon: "briefcase",
+  },
+  {
+    id: "product-manager",
+    title: "Product Manager",
+    description: "Drive product strategy and vision to create impactful solutions.",
+    icon: "target",
+  },
+  {
+    id: "data-scientist",
+    title: "Data Scientist",
+    description: "Analyze complex data to drive insights and inform business decisions.",
+    icon: "chart",
+  },
+  {
+    id: "devops-engineer",
+    title: "DevOps Engineer",
+    description: "Build and maintain infrastructure for reliable and scalable systems.",
+    icon: "server",
+  },
+  {
+    id: "digital-marketing",
+    title: "Digital Marketing",
+    description: "Create and execute marketing strategies to grow our brand presence.",
+    icon: "megaphone",
+  },
+]
 
 export default function CareersPage() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    experience: "",
-    role: "",
-    resume: "", // ✅ Google Drive link as string
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
-  const [errors, setErrors] = useState<Record<string, string>>({})
-    const [captchaToken, setCaptchaToken] = useState<string | null>(null)
-
-  const router = useRouter()
-  const searchParams = useSearchParams()
-
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {}
-    if (!formData.fullName.trim()) newErrors.fullName = "Full name is required"
-    if (!formData.email.trim()) newErrors.email = "Email is required"
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid"
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required"
-    if (!formData.role.trim()) newErrors.role = "Role is required"
-    if (!formData.resume.trim()) newErrors.resume = "Resume (Google Drive link) is required"
-    if (!formData.experience.trim()) newErrors.experience = "Work experience is required"
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  // Helper: check if user is logged in via /api/me
-  async function checkAuth(): Promise<boolean> {
-    try {
-      const res = await fetch("/api/me", { credentials: "include" })
-      if (!res.ok) return false
-      const data = await res.json().catch(() => null)
-      return Boolean(data && data.user)
-    } catch {
-      return false
-    }
-  }
-
-  // Helper: persist form data to sessionStorage
-  async function persistPendingApplication() {
-    const payload = {
-      fullName: formData.fullName,
-      email: formData.email,
-      phone: formData.phone,
-      experience: formData.experience,
-      role: formData.role,
-      resume: formData.resume, // ✅ Save as string
-      ts: Date.now(),
-    }
-    try {
-      sessionStorage.setItem("pendingApplication", JSON.stringify(payload))
-    } catch (e) {
-      console.error(" Failed to store pendingApplication", e)
-    }
-  }
-
-  // Helper: load pending application
-  function loadPendingApplication() {
-    try {
-      const raw = sessionStorage.getItem("pendingApplication")
-      if (!raw) return null
-      return JSON.parse(raw)
-    } catch {
-      return null
-    }
-  }
-
-  // Helper: clear pending application
-  function clearPendingApplication() {
-    try {
-      sessionStorage.removeItem("pendingApplication")
-    } catch {}
-  }
-
-  // On mount, if coming back from login/register with autoSubmit=1 and we are logged in, auto-submit
-  useEffect(() => {
-    const auto = searchParams.get("autoSubmit")
-    if (auto !== "1") return
-    ;(async () => {
-      const isAuthed = await checkAuth()
-      if (!isAuthed) return
-
-      const saved = loadPendingApplication()
-      if (!saved) return
-
-      try {
-        setIsSubmitting(true)
-        await emailjs.send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID1!,
-          {
-            fullName: saved.fullName,
-            email: saved.email,
-            phone: saved.phone,
-            role: saved.role,
-            experience: saved.experience,
-            resume: saved.resume, 
-          },
-          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
-        )
-        clearPendingApplication()
-        setShowSuccess(true)
-      } catch (error) {
-        console.error("❌ Auto-submit failed:", error)
-        alert("We could not submit your application automatically. Please try again.")
-      } finally {
-        setIsSubmitting(false)
-      }
-    })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!validateForm()) return
-
-    setIsSubmitting(true)
-    try {
-      await persistPendingApplication()
-      const isAuthed = await checkAuth()
-      if (!isAuthed) {
-        const nextUrl = encodeURIComponent("/careers?autoSubmit=1")
-        router.push(`/auth/login?next=${nextUrl}`)
-        return
-      }
-
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID1!,
-        {
-          ...formData,
-         
-        },
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
-      )
-
-      clearPendingApplication()
-      setShowSuccess(true)
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        experience: "",
-        role: "",
-        resume: "",
-      })
-      setCaptchaToken(null)
-    } catch (error) {
-      console.error("Error sending application:", error)
-      alert("Failed to send application. Please try again later.")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  if (showSuccess) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-md text-center shadow-2xl">
-          <CardContent className="pt-12 pb-12">
-            <div className="relative mb-8">
-              <CheckCircle className="w-24 h-24 mx-auto text-secondary animate-bounce" />
-              <Sparkles className="w-8 h-8 absolute -top-2 -right-2 text-secondary animate-pulse" />
-            </div>
-            <h2 className="text-3xl font-bold mb-4">Application Submitted!</h2>
-            <p className="text-muted-foreground mb-6">
-              Thank you for applying to Hacfy. Our team will review your application and get back to you within 48
-              hours.
-            </p>
-            <Button onClick={() => setShowSuccess(false)} className="bg-secondary hover:bg-secondary/90 text-white">
-              Submit Another Application
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -246,7 +107,8 @@ const handleSubmit = async (e: React.FormEvent) => {
               {
                 icon: Users,
                 title: "Great Team",
-                description: "Collaborate with talented professionals from around the world in a supportive environment",
+                description:
+                  "Collaborate with talented professionals from around the world in a supportive environment",
                 color: "bg-green-50 text-green-600",
               },
               {
@@ -284,166 +146,47 @@ const handleSubmit = async (e: React.FormEvent) => {
         </div>
       </div>
 
-      {/* Apply Section */}
+      {/* Available Roles Section */}
       <div className="py-12 sm:py-16 md:py-24 px-4 bg-background">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 animate-slide-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black gradient-text leading-[1.2]">Apply Now</h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl mx-auto px-4">
-              Ready to start your journey? Fill out the form below and let's build something amazing together.
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20 animate-slide-up">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black gradient-text mb-4 sm:mb-6 px-2 leading-[1.4]">
+              Available Positions
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
+              Explore our open positions and find the perfect role for you.
             </p>
           </div>
 
-          <Card className="glass-effect shadow-2xl hover:shadow-3xl transition-all duration-500 border-2 border-secondary/10">
-            <CardHeader className="text-center pb-8 sm:pb-10 pt-8 sm:pt-10 px-4 sm:px-6">
-              <CardTitle className="text-2xl sm:text-3xl font-black gradient-text">Join Our Team</CardTitle>
-              <CardDescription className="text-lg sm:text-xl text-muted-foreground">
-                Tell us about yourself and let's see if we're a perfect match
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="px-4 sm:px-6 md:px-10 pb-8 sm:pb-10">
-              <form onSubmit={handleSubmit} className="space-y-8 sm:space-y-10">
-                {/* Full Name + Email */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                  <div className="space-y-3 sm:space-y-4">
-                    <Label htmlFor="fullName" className="text-base sm:text-lg font-bold text-foreground">
-                      Full Name *
-                    </Label>
-                    <Input
-                      id="fullName"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData((prev) => ({ ...prev, fullName: e.target.value }))}
-                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
-                        errors.fullName ? "border-destructive" : "border-border"
-                      }`}
-                      placeholder="Enter your full name"
-                    />
-                    {errors.fullName && <p className="text-destructive text-sm font-semibold">{errors.fullName}</p>}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {AVAILABLE_ROLES.map((role, index) => (
+              <Card
+                key={role.id}
+                className="glass-effect hover:shadow-2xl transition-all duration-500 hover-lift animate-slide-up group overflow-hidden"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardContent className="pt-8 sm:pt-10 pb-8 sm:pb-10 px-6 sm:px-8 h-full flex flex-col">
+                  <div className="mb-6 sm:mb-8">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-secondary/20 transition-colors duration-300">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-secondary rounded-lg"></div>
+                    </div>
                   </div>
-
-                  <div className="space-y-3 sm:space-y-4">
-                    <Label htmlFor="email" className="text-base sm:text-lg font-bold text-foreground">
-                      Email Address *
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
-                        errors.email ? "border-destructive" : "border-border"
-                      }`}
-                      placeholder="Enter your email address"
-                    />
-                    {errors.email && <p className="text-destructive text-sm font-semibold">{errors.email}</p>}
-                  </div>
-                </div>
-
-                {/* Phone + Role */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                  <div className="space-y-3 sm:space-y-4">
-                    <Label htmlFor="phone" className="text-base sm:text-lg font-bold text-foreground">
-                      Phone Number *
-                    </Label>
-                    <Input
-                      id="phone"
-                      value={formData.phone}
-                      onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                      className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
-                        errors.phone ? "border-destructive" : "border-border"
-                      }`}
-                      placeholder="Enter your phone number"
-                    />
-                    {errors.phone && <p className="text-destructive text-sm font-semibold">{errors.phone}</p>}
-                  </div>
-
-                  <div className="space-y-3 sm:space-y-4">
-                    <Label htmlFor="role" className="text-base sm:text-lg font-bold text-foreground">
-                      Role Applying For *
-                    </Label>
-                    <Select
-                      value={formData.role}
-                      onValueChange={(value) => setFormData((prev) => ({ ...prev, role: value }))}
-                    >
-                      <SelectTrigger
-                        className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
-                          errors.role ? "border-destructive" : "border-border"
-                        }`}
-                      >
-                        <SelectValue placeholder="Select a role" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="vapt-analyst">VAPT Analyst</SelectItem>
-                        <SelectItem value="cybersecurity-trainer">Cybersecurity Trainer</SelectItem>
-                        <SelectItem value="project-manager">Project Manager</SelectItem>
-                        <SelectItem value="digital-marketing">Digital Marketing</SelectItem>
-                        <SelectItem value="product-manager">Product Manager</SelectItem>
-                        <SelectItem value="data-scientist">Data Scientist</SelectItem>
-                        <SelectItem value="devops-engineer">DevOps Engineer</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {errors.role && <p className="text-destructive text-sm font-semibold">{errors.role}</p>}
-                  </div>
-                </div>
-
-                {/* Resume Link */}
-                <div className="space-y-3 sm:space-y-4">
-                  <Label htmlFor="resume" className="text-base sm:text-lg font-bold text-foreground">
-                    Resume (Google Drive Link) *
-                  </Label>
-                  <Input
-                    id="resume"
-                    value={formData.resume}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, resume: e.target.value }))}
-                    className={`h-12 sm:h-14 text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
-                      errors.resume ? "border-destructive" : "border-border"
-                    }`}
-                    placeholder="Paste your Google Drive link"
-                  />
-                  {errors.resume && <p className="text-destructive text-sm font-semibold">{errors.resume}</p>}
-                </div>
-
-                {/* Experience */}
-                <div className="space-y-3 sm:space-y-4">
-                  <Label htmlFor="experience" className="text-base sm:text-lg font-bold text-foreground">
-                    Work Experience *
-                  </Label>
-                  <Textarea
-                    id="experience"
-                    value={formData.experience}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, experience: e.target.value }))}
-                    className={`min-h-[120px] sm:min-h-[160px] text-base sm:text-lg border-2 focus:border-secondary transition-all duration-300 rounded-xl ${
-                      errors.experience ? "border-destructive" : "border-border"
-                    }`}
-                    placeholder="Tell us about your relevant work experience"
-                  />
-                  {errors.experience && <p className="text-destructive text-sm font-semibold">{errors.experience}</p>}
-                </div>
-
-                      <div className="flex justify-center">
-                  <Turnstile
-                    sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                    onVerify={(token) => setCaptchaToken(token)}
-                  />
-                </div>
-                {errors.captcha && (
-                  <p className="text-destructive text-sm font-semibold text-center">{errors.captcha}</p>
-                )}
-
-                {/* Submit Button */}
-                <div className="text-center pt-4 sm:pt-6">
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full h-12 sm:h-14 text-base sm:text-lg font-bold bg-secondary hover:bg-secondary/90 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    {isSubmitting ? "Submitting..." : "Submit Application"}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+                  <h3 className="text-xl sm:text-2xl font-black mb-3 sm:mb-4 text-foreground group-hover:text-secondary transition-colors duration-300">
+                    {role.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed text-base sm:text-lg mb-6 sm:mb-8 flex-grow">
+                    {role.description}
+                  </p>
+                  <Link href={`/careers/${role.id}`} className="w-full">
+                    <Button className="w-full bg-secondary hover:bg-secondary/90 text-white rounded-xl h-11 sm:h-12 font-bold flex items-center justify-center gap-2 group/btn">
+                      View More
+                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>
